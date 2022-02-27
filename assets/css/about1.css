@@ -1,0 +1,278 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+*{
+	margin: 0;
+	padding: 0;
+}
+
+header{
+	
+	background-color: #525252;
+	width: 1500px;
+	height: 80px;
+	position: fixed;
+}
+.logo1 img{
+	width: 76px;
+	height: 80px;
+	padding: 9px 0 5px 5px;
+}
+/* nav bar*/
+.navbar{
+	overflow: hidden;
+	position: fixed;
+	height: 70px;
+	width: 1000px;
+	margin-top:-70px;
+	justify-content: right;
+	
+	margin-left: 405px;
+	align-items: center;
+
+}
+.navbar ul{
+	display: flex;
+	
+	
+}
+.navbar ul li{
+	
+	font-family: roboto;
+	font-weight: normal;
+	margin-left: 16px;
+	color: white;
+	text-decoration: none;
+	list-style: none;
+	
+}
+.navbar ul li a{
+	color: white;
+	text-decoration: none;
+	list-style: none;
+	font-size: 17px;
+	padding: 6px 10px 8px 10px;
+	font-weight: normal;
+	font-family: normal;
+	text-decoration: none;
+	list-style: none;
+	margin: 4px 5px 9px 9px;
+	
+}
+
+
+
+.book{
+
+	background-color: #006072;
+	border: 1px solid white;
+	border-radius: 30px;
+	padding-right: 10px;
+	
+}
+.book:hover{
+	background-color: black;
+	display: block;
+}
+.books{
+	border: 1px solid white;
+	border-radius: 30px;	
+}
+.books:hover{
+	background-color: black;
+	display: block;
+}
+
+.simple:hover{
+	background-color: black;
+
+}
+
+
+
+img{
+	width: 1360px;
+	height: 330px;
+}
+.pri{
+
+	font-size: 30px;
+	font-weight: 400px;
+	color: #4f4f4f;
+	font-weight: bold;
+	
+	width: 400px;
+	height: 25px;
+	
+}
+.l1{
+	margin-top: 30px;
+ margin-left:140px;
+ font-size: 18px;
+  font-weight: normal;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.5;
+  letter-spacing: normal;
+  text-align: center;
+  color: #646464;
+}
+.l2{
+	margin-top: 25px;
+	margin-left: 140px;
+	font-size: 18px;
+	font-weight: normal;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.5;
+  	letter-spacing: normal;
+  	text-align: center;
+  	color: #646464;
+}
+.lol{
+	margin-top: 25px;
+	margin-left: 140px;
+	font-size: 18px;
+	font-weight: normal;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.5;
+  	letter-spacing: normal;
+  	text-align: center;
+  	color: #646464;
+}
+
+ 	
+.news h4{
+	color: #353548;
+	font-size: 14px;
+	margin-left: 570px;
+	margin-top: 60px;
+}
+.inline{
+	display: inline-flex;
+}
+.but{
+	background-color: #ff7b6d;
+	color: white;
+	font-size: 12px;
+	margin-left: 20px;
+	font-weight: bold;
+	border:1px solid #ff7b6d;
+	border-radius: 26px;
+	width: 100px;
+	height: 30px;
+}
+
+
+
+.footer{
+	background-color: #111111;
+}
+.nn{
+	display: flex;
+}
+.footer ul{
+	margin-left: 330px;
+	margin-top: -40px;
+	display: inline-flex;
+	list-style: none;
+	text-decoration: none;
+
+}
+.footer ul li a{
+	font-size: 14px;
+	display: inline-flex;
+	margin: 2px 15px 3px 19px;
+	color: white;
+}
+.last{
+	margin-left: 170px;
+	margin-top: -30px;
+}
+
+.footer ul li a:hover{
+	display: block;
+	background-color: #006072;
+	border-radius: 30px;
+	
+}
+.getmail{
+	margin-left: 525px;
+}
+
+
+
+/* media quaries*/
+
+@media (max-width: 400px){
+	header{
+		width: 100%;
+		height:auto;
+		display: block;
+	}
+	.logo1 img{
+	width: 42px;
+	height: 43px;
+	}
+	.navbar{
+	margin-left: 100px;
+	height: auto;
+	margin-top:-33px;
+	
+	}
+	.navbar ul{
+	display: block;
+	overflow: hidden;
+	height: auto;
+	}
+
+	img{
+		width:600px;
+	height: 400px;
+	display: block;
+	}
+	.era{
+		margin-left: -500px;
+		font-size: 12px;
+	}
+	.raw{
+		height: 4px;
+		width: 20%;
+	}
+	.l1 {
+		margin-left: 15px;
+	}	
+	.l2{
+		margin-left: 15px;
+	}
+	.lol{
+		margin-left: 15px;
+	}
+	.news h4{
+		color: #353548;
+		font-size: 17px;
+		margin-left:130px;
+		margin-top: 60px;
+	}
+	.getmail{
+		margin-left: 50px;
+		
+	}
+			.nn{
+	display: block;
+	}
+	.footer ul{
+	margin-left: 110px;
+	margin-top: 20px;
+	display: block;
+	
+
+	}
+	.footer ul li a{
+	font-size: 14px;
+	
+	}
+	.last{
+	margin-left: 30px;
+	
+	}
+}

@@ -1,0 +1,20 @@
+h1{
+	padding-top: 20px;
+	color: grey;
+}
+#name{
+	margin:10px 0 10px 10px;
+	
+}
+#name input{
+	width: 320px;
+	height: 35px;
+	margin-right: 11px;
+	margin-top: 15px;
+}
+.form-container{
+	margin-top: 20px;
+	height: 400px;
+	width: 760px;
+	
+}
