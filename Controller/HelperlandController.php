@@ -1,6 +1,7 @@
 <?php
 class HelperlandController
 {
+  // this is new
 	 function __construct()
 		{
 			include('Models/Connection.php');
