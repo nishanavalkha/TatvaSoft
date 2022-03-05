@@ -61,7 +61,7 @@
 
 	<div class="rec-box">
 		<div class="reg" style="margin-bottom: 41px; margin-top: 20px;">Register as Helper! </div>
-		<form action="http://localhost/helperland1/?controller=Helperland&function=spSignup" method="post">
+		<form action="http://localhost/TatvaSoft/?controller=Helperland&function=spSignup" method="post">
 			<div class="index">
 				<input type="text" name="FirstName" placeholder="First name" required>
 				<input type="text" name="LastName" placeholder="Last name" required>

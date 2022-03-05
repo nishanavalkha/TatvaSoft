@@ -39,7 +39,7 @@
 <div class="get" > Get in touch with us</div>
         <div class="box">
 
-            <form  action="http://localhost/helperland1/?controller=Helperland&function=ContactUs" method="post">
+            <form  action="http://localhost/TatvaSoft/?controller=Helperland&function=ContactUs" method="post">
                  <div class="b1">
                     <input type="text" name="firstname" placeholder="First name">
                     <input type="text" name="lastname" placeholder="Last name">

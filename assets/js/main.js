@@ -56,9 +56,9 @@ function show4() {
     document.getElementById("btntxt4").style.color = "white";
     document.getElementById("btni4").src = "../assets/image/payment-white.png";
 }
-var date;
-var time;
-var tdate;
+var date = 0;
+var time = 0;
+var tdate = 0;
 var ttime;
 var totaltime;
 var servicehours = 0;
@@ -68,7 +68,8 @@ var haspet = 0;
 var totalcleaning = 0;
 var totalpayment = 0;
 var comments;
-var UserId;
+var UserId = 0;
+var saddid = 0;
 var servicedt;
 $(document).ready(function() {
     $(".ava").click(function() {
@@ -80,7 +81,7 @@ $(document).ready(function() {
         } else {
             $.ajax({
                 type: "POST",
-                url: "http://localhost/helperland1/?controller=Helperland&function=availibility",
+                url: "http://localhost/TatvaSoft/?controller=Helperland&function=availibility",
                 data: { "zipcode": postalcode },
                 success: function(response) {
                     if (response == 0) {
@@ -254,7 +255,7 @@ $(document).ready(function() {
         postalcode = $(".postalcode").val();
         $.ajax({
             type: "POST",
-            url: "http://localhost/helperland1/?controller=Helperland&function=addresseslist",
+            url: "http://localhost/TatvaSoft/?controller=Helperland&function=addresseslist",
             data: { "zipcode": postalcode },
             success: function(response) {
                 document.querySelector(".add").innerHTML = response;
@@ -271,7 +272,7 @@ $(document).ready(function() {
 
         $.ajax({
             type: "POST",
-            url: "http://localhost/helperland1/?controller=Helperland&function=insertdata",
+            url: "http://localhost/TatvaSoft/?controller=Helperland&function=insertdata",
             data: {
                 "streetname": streetname,
                 "housenumber": housenumber,
@@ -285,11 +286,11 @@ $(document).ready(function() {
     });
 
     $(".completebook").click(function() {
-        // alert(tdate);
-        // ServiceStartDate = date + tdate;
+        //alert(extraservicehours);
+        ServiceStartDate = date + tdate;
         $.ajax({
             type: "POST",
-            url: "http://localhost/helperland1/?controller=Helperland&function=servicerequest",
+            url: "http://localhost/TatvaSoft/?controller=Helperland&function=servicerequest",
             data: {
 
                 "date": date,
@@ -300,21 +301,51 @@ $(document).ready(function() {
                 "totalcleaning": totalcleaning,
                 "totalpayment": totalpayment,
                 "comments": comments,
-                "haspet": haspet
+                "haspet": haspet,
+                "saddid": saddid
 
             },
 
             success: function(response) {
                 document.querySelector(".ggg").innerHTML = response;
+                // alert("mail succes");
+                if (response) {
+                    Swal.fire({
+                        icon: 'success',
+                        title: 'Done',
+                        text: 'Booking'
+                    }).then((result) => {
+                        if (result.isConfirmed) {
+                            window.location.href = "http://localhost/TatvaSoft/Views/home.php";
+                        }
+
+                    });
+                }
             }
         });
 
     });
 
+    $(".add").click(function(e) {
+        saddid = e.target.value;
+    });
 
 
+    // $(".gy").click(function() {
+    //     $("#servicedetailmodal").modal("show");
 
+    // });
 
+    function dashboard() {
+        alert("abc");
 
+        $.ajax({
+            type: "POST",
+            url: "http://localhost/TatvaSoft/?controller=Helperland&function=",
 
+            success: function(response) {
+                document.querySelector(".addnew").innerHTML = response;
+            }
+        });
+    }
 });

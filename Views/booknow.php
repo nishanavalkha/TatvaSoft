@@ -5,20 +5,20 @@
 
 	<link rel="stylesheet" type="text/css" href="../assets/css/booknow1.css">
 	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <link rel="stylesheet" href="https://www.markuptag.com/bootstrap/5/css/bootstrap.min.css" />
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-   <script  src="../assets/js/main.js"></script> 
+  <link rel="stylesheet" href="https://www.markuptag.com/bootstrap/5/css/bootstrap.min.css" />
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.4/dist/sweetalert2.min.css" rel="stylesheet">
+    
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    
 </head>
 <body>
 	<header>
     	<div class="img-fluid container-fluid bg">
 			<img src="../assets/image/logo-large.png" class="logo img-fluid" style="width: 70px;height: 60px; margin-top:10px;" >
-			<nav class="navbar">
-				 <ul>
+			    <nav class="navbar">
+				     <ul>
                 	<li><a href="" class="book"> Book now</a> </li>
                     <li><a href="" class="simple"> Prices & services </a> </li>
                     <li><a href="" class="simple"> Warranty</a> </li>
@@ -34,16 +34,18 @@
                                                 <option>3</option>
                                            	  </select>
                         </button></li>
-                  </ul>
+            </ul>
         	</nav>
-        </div>
-    </header>
-
+       </div>
+</header>
+  
      <div class="pri">  Set up your cleaning service </div>
     	<div class="raw" style="color: #ccc; margin-left: 660px;">-------- <img src="../assets/image/separator.png" style="margin-top: 26px; width: 30px;  height: 20px; ">--------
     	</div>
 
-
+<!-- <div class="loader">
+ 
+</div> -->
 <div class="main-container" id="box">
 	<div class="nav" style="height: 30px;width: 650px;">
 
@@ -69,7 +71,7 @@
 
 			<!-- Schedule & Plan -->
 			<div id="body2" style="">
-                       
+     
                        <div class="cleaner">
                            <h5>When do you need the cleaner?</h5>
                            <h5>How long do you need your cleaner to stay?</h5>
@@ -351,6 +353,9 @@
                    <a href="faq.php" style="text-decoration: none;">For more help</a>
      	</div>
 </div>  			
-
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.4/dist/sweetalert2.all.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+   <script  src="../assets/js/main.js"></script> 
 </body>
 </html>

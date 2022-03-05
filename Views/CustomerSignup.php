@@ -51,7 +51,7 @@
       	
         	<div class="form-container" id="content">
 
-        			<form action="http://localhost/helperland1/?controller=Helperland&function=CSignup" method="post" id="signup-form">
+        			<form action="http://localhost/TatvaSoft/?controller=Helperland&function=CSignup" method="post" id="signup-form">
         			<div class="text-center" id="name">
         				<input type="text" name="FirstName" title="first name"  placeholder="First Name" required>
         				<input type="text"  name="LastName" title="last name" placeholder="Last Name" required>

@@ -22,7 +22,7 @@
 <body>
 			
 			<div class="container" style="height: 30px; width: 370px;">	
-				<form action="http://localhost/helperland1/?controller=Helperland&function=resetpassword" method="post" id="signup-form">
+				<form action="http://localhost/TatvaSoft/?controller=Helperland&function=resetpassword" method="post" id="signup-form">
 					<h3 class="" style="margin: 17px 0 17px 0;">Forgot Password from</h3>
 					
 					<label for="" style="color: grey;font-weight: bold;">New Password</label>

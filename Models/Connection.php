@@ -123,15 +123,36 @@ class Helperland
         $TotalCost =$array['TotalCost'];
         $Comments= $array['Comments'];
         $HasPets= $array['HasPets'];
+
         $query= "INSERT INTO servicerequest(UserId,ServiceStartDate,ZipCode,ServiceHours,ExtraHours,SubTotal,TotalCost,Comments,HasPets) VALUES ('$UserId','$ServiceStartDate','$ZipCode','$ServiceHours','$ExtraHours','$SubTotal','$TotalCost','$Comments','$HasPets')";
         $result1= mysqli_query($this->conn,$query);
+        $reqId = mysqli_insert_id($this->conn);
+        return $reqId;
 
-        if($result1==TRUE){
-          echo "success";
-        }
-         else{
-           echo "no";
-         }
+        // if($result1==TRUE){
+        //   echo "success";
+        // }
+        //  else{
+        //    echo "no";
+        //  }
       }
+
+      function add_service_request_address($reqAdd)
+      {
+        $reqid= $reqAdd['reqid'];
+        $saddid =$reqAdd['addid'];
+        $query = "INSERT INTO servicerequestaddress(ServiceRequestId,AddressId) VALUES ('$reqid','$saddid')";
+        $result = mysqli_query($this->conn,$query);
+      }
+
+      function getServiceById($Zip)
+      {
+        $query = "SELECT * FROM user WHERE UserTypeId=2 AND ZipCode='$Zip'";
+        $result= mysqli_query($this->conn,$query);
+        $row= $result -> fetch_all(MYSQLI_ASSOC);
+        return $row;
+      // echo $result;
+      }
+
 }
 ?>

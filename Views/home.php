@@ -23,7 +23,6 @@
 
 ?>
 
-
 <!DOCTYPE html>
 <html>
 	<head>
@@ -38,7 +37,7 @@
 		 <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 		  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"> 
  
-		 <link rel="stylesheet" href="http://localhost/helperland1/assets/css/home1.css">
+		 <link rel="stylesheet" href="http://localhost/TatvaSoft/assets/css/home1.css">
 	</head>
 	<body>
 		
@@ -55,7 +54,7 @@
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
-                       <form action="http://localhost/helperland1/?controller=Helperland&function=Login" method="post">
+                       <form action="http://localhost/TatvaSoft/?controller=Helperland&function=Login" method="post">
                         <div class="mb-3 form-group icon-textbox" id="email">
                             <input type="email" name="Email" class="form-control" id="exampleFormControlInput1" placeholder="Email" title="Email">
                           	
@@ -71,10 +70,10 @@
                                 Remember Me
                             </label>
                         </div>
-                        <button type="submit" class="btn-login" href="" name="login"> Login</button>
+                        <button type="submit" class="btn-login" href="http://localhost/TatvaSoft/Views/booknow.php" name="login"> Login</button>
                          <div class="text-center mb-2"><a href="#" data-bs-toggle="modal"
                             data-bs-target="#Modalform" data-bs-dismiss="modal" title="Forgot Password">Forgot Password?</a></div>
-                        <div class="text-center" style="color: black;">Don't have an account? <a href="http://localhost/helperland1/Views/CustomerSignup.php">Create an account</a></div>
+                        <div class="text-center" style="color: black;">Don't have an account? <a href="http://localhost/TatvaSoft/Views/CustomerSignup.php">Create an account</a></div>
                     </form>
                     </div>
                 </div>
@@ -92,7 +91,7 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <form action="http://localhost/helperland1/?controller=Helperland&function=ForgotPassword" method="post">
+                    <form action="http://localhost/TatvaSoft/?controller=Helperland&function=ForgotPassword" method="post">
                         <div class="mb-3 form-group icon-textbox">
                             <input type="email" name="Email" class="form-control" id="exampleFormControlInput1" placeholder="Email" title="Email">
                            
@@ -122,14 +121,14 @@
 					<div class="col-md-auto" style="margin-top: -45px; margin-left: 294px;" id="">
 						<ul class="">
 							
-							<li><a href="http://localhost/helperland1/Views/booknow.php" title="book a cleaner"  class="nav_btn">Book Now</a></li>
-							<li><a href="http://localhost/helperland1/Views/prices.php" title="prices" >Prices & services</a></li>
+							<li><a href="http://localhost/TatvaSoft/Views/booknow.php" title="book a cleaner"  class="nav_btn">Book Now</a></li>
+							<li><a href="http://localhost/TatvaSoft/Views/prices.php" title="prices" >Prices & services</a></li>
 							<li><a href="" title="Our Guarantee" >Warranty</a></li>
 							<li><a href="" title="blog">Blog</a></li>
-							<li><a href="http://localhost/helperland1/Views/contact.php" title="contact">Contact us</a></li>
+							<li><a href="http://localhost/TatvaSoft/Views/contact.php" title="contact">Contact us</a></li>
 							
         					<li><a href=""  data-bs-toggle="modal" data-bs-target="#modalForm">login</a></li>
-							<li><a href="http://localhost/helperland1/Views/SpSignup.php" title="Become a Helper" class="nav_btn">Become a Helper</a></li>
+							<li><a href="http://localhost/TatvaSoft/Views/SpSignup.php" title="Become a Helper" class="nav_btn">Become a Helper</a></li>
 							
 						</ul>
 					</div>
@@ -150,7 +149,7 @@
 					</div>
 					<div class="row" style=" margin-left: 100px; margin-top: 125px;">
 						
-						<a class="btn book_btn" href="http://localhost/helperland1/Views/booknow.php">Book a Helper</a>
+						<a class="btn book_btn" href="http://localhost/TatvaSoft/Views/booknow.php">Book a Helper</a>
 						
 						
 					</div>

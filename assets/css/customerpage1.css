@@ -1,0 +1,496 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,900;1,700&display=swap");
+* {
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    width: 1367px;
+    height: 80px;
+    background-color: #525252;
+}
+
+.navbar {
+    margin-left: 540px;
+}
+
+.navbar ul {
+    display: flex;
+    margin-top: -60px;
+}
+
+.navbar ul li {
+    height: 30px;
+    margin-left: 10px;
+    text-decoration: none;
+    list-style: none;
+}
+
+.navbar ul li a {
+    font-weight: bolder;
+    font-size: 19px;
+    padding: 10px 7px 9px 13px;
+    margin: 4px 5px 6px 8px;
+    font-weight: normal;
+    font-family: normal;
+    text-decoration: none;
+    list-style: none;
+    color: white;
+}
+
+.badge {
+    position: absolute;
+    margin-top: -3px;
+    width: 23px;
+    background-color: red;
+    margin-left: -10px;
+    height: 20px;
+    color: white;
+}
+
+.lo:hover {
+    background-color: #006072;
+}
+
+.book {
+    background-color: #006072;
+    color: white;
+    border: 1px solid white;
+    border-radius: 30px;
+}
+
+.book:hover {
+    background-color: black;
+    display: block;
+}
+
+.simple:hover {
+    background-color: black;
+}
+
+.welcome {
+    width: 1366px;
+    height: 100px;
+    background-color: #f9f9f9;
+    padding-top: 20px;
+}
+
+.Welcome-Sandip {
+    width: 237px;
+    height: 20px;
+    font-family: Roboto;
+    font-size: 30px;
+    font-weight: normal;
+    font-stretch: normal;
+    font-style: normal;
+    letter-spacing: normal;
+    color: #4f4f4f;
+}
+
+.text-style-1 {
+    font-weight: bold;
+}
+
+.navbar-content {
+    width: 300px;
+    height: 500px;
+    background-color: #1d7a8c;
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    margin: 40px 0 0 23px;
+}
+
+.navbar-content a {
+    color: white;
+    line-height: 2;
+    font-style: normal;
+    font-size: 18px;
+    font-family: Roboto;
+}
+
+.navbar-content a:hover {
+    color: black;
+}
+
+#v-pills-tab a {
+    border: 1px solid white;
+}
+
+.serhist {
+    font-weight: bold;
+    font-size: 22px;
+    color: #646464;
+    width: 300px;
+    margin-top: 12px;
+}
+
+.status-completed {
+    background: #67b644;
+    color: #ffffff;
+    border: 1px solid #e1e1e1;
+    padding: 5px 6px 4px 9px;
+    font-size: 15px;
+    width: 100px;
+    height: 40px;
+    margin-top: 15px;
+}
+
+.status-cancelled {
+    background: #ff6b6b;
+    color: #ffffff;
+    border: 1px solid #e1e1e1;
+    padding: 5px 4px 4px 9px;
+    font-size: 13px;
+    /* margin-left: 12px; */
+}
+
+.go {
+    display: flex;
+}
+
+.addnew {
+    margin-left: 450px;
+    width: 250px;
+    height: 40px;
+}
+
+.btnaddnew .addnew {
+    background-color: #006072;
+    color: white;
+}
+
+.table {
+    border-collapse: collapse;
+    border: 1px solid black;
+}
+
+.table thead {
+    background-color: #f9f9f9;
+}
+
+.reschedule,
+.rate-sp {
+    background-color: #0c7286;
+    color: #ffff;
+    border: none;
+    font-size: 15px;
+    width: 100px;
+    height: 40px;
+    border-radius: 22px;
+}
+
+.reschedule:hover {
+    background-color: #006072;
+}
+
+.cancel {
+    background-color: #ff6b6b;
+    color: #ffff;
+    margin-left: 15px;
+    border: none;
+    width: 86px;
+    height: 40px;
+    border-radius: 22px;
+    font-size: 15px;
+}
+
+.cancel:hover {
+    background-color: hsl(0, 81%, 59%);
+}
+
+
+/* .rate-sp {
+    background-color: #0c7286;
+    color: #ffff;
+    border: none;
+    padding: 10px 9px 11px 10px;
+    border-radius: 20px;
+    font-size: 14px;
+    margin-top: 12px;
+    cursor: point;
+} */
+
+.last {
+    display: inline-flex;
+}
+
+.show1 {
+    display: flex;
+    margin-left: 340px;
+    margin-top: 4px;
+    font-size: 16px;
+    color: #646464;
+}
+
+.navbar3 {
+    display: flex;
+    text-decoration: none;
+    list-style: none;
+    margin-left: 380px;
+}
+
+.navbar3 li {
+    margin-left: 10px;
+}
+
+.navbar3 li a {
+    text-decoration: none;
+    list-style: none;
+    color: grey;
+    border: 1px solid grey;
+    border-radius: 120%;
+    padding: 4px 6px 4px 6px;
+}
+
+
+/* service detail css */
+
+.modal .modal-dialog .modal-content .modal-body {
+    padding: 15px 30px;
+}
+
+.modal-dialog {
+    max-width: 550px;
+    margin: 20px auto;
+}
+
+.mod {
+    margin-left: 15px;
+}
+
+.modal .modal-dialog .modal-content .modal-header {
+    font-family: 'Roboto';
+    color: #646464;
+    padding: 15px 30px;
+}
+
+.modal .modal-dialog .modal-content .modal-footer .btn-reschedule {
+    font-family: 'Roboto';
+    font-size: 14px;
+    padding: 5px 10px;
+    height: 35px;
+    border-radius: 17.5px;
+    background-color: #1D7A8C;
+    color: black;
+    border: 1px solid #1D7A8C;
+}
+
+.modal .modal-dialog .modal-content .modal-footer .btn-reschedule:hover {
+    background-color: #006072;
+    color: white;
+}
+
+.modal .modal-dialog .modal-content .modal-footer .btn-cancel {
+    font-family: 'Roboto';
+    font-size: 14px;
+    padding: 5px 10px;
+    height: 35px;
+    border-radius: 17.5px;
+    color: black;
+    background: #FF6B6B;
+    border: #FF6B6B;
+}
+
+.modal .modal-dialog .modal-content .modal-footer .btn-cancel:hover {
+    background: #fD4B4B;
+    color: white;
+}
+
+.service-datetime {
+    font-family: 'Roboto';
+    font-size: 20px;
+    font-weight: 600;
+    color: #4F4F4F;
+}
+
+.service-detail-text {
+    font-family: 'Roboto';
+    font-size: 16px;
+    font-weight: 300;
+    color: #4F4F4F;
+    margin-left: 15px;
+}
+
+.service-detail-euro {
+    font-family: 'Roboto';
+    font-size: 20px;
+    font-weight: 500;
+    color: #1D7A8C;
+    margin-left: 25px;
+}
+
+.fa-times-circle {
+    font-size: 26px;
+    color: red;
+}
+
+.ft {
+    justify-content: flex-start;
+}
+
+#mod {
+    max-width: 600px;
+}
+
+
+/* reschedule modal */
+
+.modal .modal-dialog .modal-content .modal-body .register-inputs .input-element {
+    width: 100%;
+    height: 45px;
+    font-family: 'Roboto';
+    font-size: 16px;
+    color: #4F4F4F;
+    margin: 5px 0 15px 0;
+    padding: 0 0 0 5px;
+    border: 1px solid #E1E1E1;
+}
+
+.modal .modal-dialog .modal-content .modal-body .register-inputs #booktime {
+    width: 100%;
+    height: 45px;
+    font-family: 'Roboto';
+    font-size: 16px;
+    color: #4F4F4F;
+    margin: 5px 0 15px 0;
+    border: 1px solid #E1E1E1;
+}
+
+.modal .modal-dialog .modal-content .modal-footer .btn-update {
+    width: 100%;
+    height: 46px;
+    font-family: 'Roboto';
+    font-size: 16px;
+    font-weight: 400;
+    color: #FFFFFF;
+    padding: 10px 5px;
+    background-color: #0c7286;
+    border: 1px solid #0c7286;
+    border-radius: 23px;
+}
+
+.modal .modal-dialog .modal-content .modal-footer .btn-cancelnow {
+    width: 100%;
+    height: 46px;
+    font-family: 'Roboto';
+    font-size: 16px;
+    font-weight: 400;
+    color: #FFFFFF;
+    padding: 10px 5px;
+    background-color: #0c7286;
+    border: 1px solid #0c7286;
+    border-radius: 23px;
+}
+
+.modal .modal-dialog .modal-content .modal-body .why-cancel {
+    width: 100%;
+    height: 100px;
+    padding: 5px 10px;
+    margin: 15px 0;
+    border: 1px solid #E1E1E1;
+    border-radius: 3px;
+}
+
+.modal .modal-dialog .modal-content .modal-body .cancel-question {
+    width: 100%;
+    font-family: 'Roboto';
+    font-size: 16px;
+    color: #4F4F4F;
+}
+
+.ro img {
+    border: 1.5px solid #9C9C9C;
+    border-radius: 70%;
+    padding: 9px 6px 8px 5px;
+}
+
+
+/* rate sp modal */
+
+.modal .modal-dialog .modal-content .modal-header .round-border {
+    width: 60px;
+    height: 60px;
+    padding: 16px 7px;
+    border: 1.5px solid #9C9C9C;
+    border-radius: 50%;
+}
+
+.modal .modal-dialog .modal-content .modal-header .sp-details {
+    font-family: 'Roboto';
+    font-size: 20px;
+    color: #4F4F4F;
+    margin-bottom: 0;
+}
+
+.ps-2 {
+    margin-left: 15px;
+    padding-top: 15px;
+}
+
+.modal .modal-dialog .modal-content .modal-body .register-inputs .rate-service-text {
+    font-family: 'Roboto';
+    font-size: 18px;
+    font-weight: 600;
+    color: #4F4F4F;
+    margin-bottom: 10px;
+}
+
+.modal .modal-dialog .modal-content .modal-body .register-inputs .subtext {
+    font-family: 'Roboto';
+    font-size: 16px;
+    font-weight: 300;
+    color: #4F4F4F;
+    margin: 10px 0;
+}
+
+.modal .modal-dialog .modal-content .modal-body .register-inputs .rate-feedback {
+    font-family: 'Roboto';
+    font-size: 16px;
+    color: #4F4F4F;
+    width: 100%;
+    height: 60px;
+    margin-bottom: 15px;
+    padding: 5px 10px;
+    border: 1px solid #E1E1E1;
+    border-radius: 3px;
+}
+
+.modal .modal-dialog .modal-content .modal-footer .btn-ratesp-submit {
+    width: 30%;
+    height: 46px;
+    font-family: 'Roboto';
+    font-size: 16px;
+    font-weight: 400;
+    color: #FFFFFF;
+    padding: 10px 5px;
+    background-color: #0c7286;
+    border: 1px solid #0c7286;
+    border-radius: 23px;
+}
+
+.footer {
+    background-color: #111111;
+}
+
+.nn {
+    display: flex;
+}
+
+.footer ul {
+    margin-left: 330px;
+    margin-top: -40px;
+    display: inline-flex;
+    text-decoration: none;
+    list-style: none;
+}
+
+.footer ul li a {
+    margin: 3px 10px 3px 9px;
+    font-size: 14px;
+    display: inline-flex;
+    color: white;
+}
+
+.last1 {
+    margin-left: 170px;
+    margin-top: -30px;
+}

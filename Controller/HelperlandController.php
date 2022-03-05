@@ -15,7 +15,7 @@ class HelperlandController
     public function ContactUs()
     	{
     		if(isset($_POST)){ 
-    $base_url = "http://localhost/helperland1/Views/contact.php";
+    $base_url = "http://localhost/TatvaSoft/Views/contact.php";
   		 $array = [
   		
                 'FName' => $_POST['firstname'],
@@ -37,11 +37,11 @@ class HelperlandController
    {
       if(isset($_POST))
       {
-                $custpage = "http://localhost/helperland1/Views/cust.php";
-                $sppage="http://localhost/helperland1/Views/sp.php"; 
+                $custpage = "http://localhost/TatvaSoft/Views/cust.php";
+                $sppage="http://localhost/TatvaSoft/Views/sp.php"; 
                 if(($_POST['Email'] == "") || ($_POST['Password'] == "")){
                 
-                $base_url ="http://localhost/helperland1/Views/home.php";
+                $base_url ="http://localhost/TatvaSoft/Views/home.php";
                 header('Location:' . $base_url);
            }
            else{
@@ -54,7 +54,7 @@ class HelperlandController
             $_SESSION['UserId'] = $userdata['UserId'];
             if($usertypeid==1){
               
-               header('Location:' . $custpage);
+              header('Location:' . $custpage);
             }
             elseif($usertypeid==2){
               header('Location:' . $sppage);
@@ -64,10 +64,35 @@ class HelperlandController
             }
           }
       }
-   }  
+   } 
+   
+  //  public function gotobookservicepage()
+  //   {
+  //       if(isset($_SESSION['loggedin']))
+  //       {
+  //           if($_SESSION['loggedin'] == 1)
+  //           {
+  //               $base_url ="http://localhost/TatvaSoft/booknow";
+  //               header('Location:' . $base_url);
+  //           }
+  //           else
+  //           {
+  //               $_SESSION['login_alert']="0";
+  //               $base_url ="http://localhost/TatvaSoft/#modalForm";
+  //               header('Location:' . $base_url);
+  //           }
+  //       }
+  //       else
+  //       {
+  //           $_SESSION['login_alert']="1";
+  //           $base_url ="http://localhost/TatvaSoft/#modalForm";
+  //           header('Location:' . $base_url);
+  //       }
+  //   }
+
    public function logout()
     {
-        $base_url = "http://localhost/helperland1/Views/home.php";
+        $base_url = "http://localhost/TatvaSoft/Views/home.php";
         session_unset();
         session_destroy();
         header('Location:' . $base_url);
@@ -106,7 +131,7 @@ class HelperlandController
             }
            
 
-        $base_url = "http://localhost/helperland1/Views/home.php";
+        $base_url = "http://localhost/TatvaSoft/Views/home.php";
          $array = [
                   'FName' =>$_POST['FirstName'],
                   'LName' =>$_POST['LastName'],
@@ -154,7 +179,7 @@ class HelperlandController
                 exit;
             }
 
-      $base_url = "http://localhost/helperland1/Views/home.php";
+      $base_url = "http://localhost/TatvaSoft/Views/home.php";
       $array= [
                 'FName' =>$_POST['FirstName'],
                 'LName' =>$_POST['LastName'],
@@ -177,7 +202,7 @@ class HelperlandController
             {
                 $to_email = $_POST['Email'];
                 $subject = "RESET PASSWORD";
-                $body = "click the link to reset password  http://localhost/helperland1/Views/forgot.php";
+                $body = "click the link to reset password  http://localhost/TatvaSoft/Views/forgot.php";
                 $headers = "From: nishanavalkha2251@gmail.com";
                 $_SESSION['regmail']=$_POST['Email'];
                 
@@ -187,7 +212,7 @@ class HelperlandController
                     $_SESSION['mailstatus'] = "2";
                 }
 
-                 $base_url = "http://localhost/helperland1/Views/home.php";
+                 $base_url = "http://localhost/TatvaSoft/Views/home.php";
                  header('Location: ' . $base_url);
                
             }
@@ -206,7 +231,7 @@ class HelperlandController
                 $email= $_SESSION['regmail'];
                 $this->model->resetpass('user',$email,$new_password);
                 unset($_SESSION['regmail']);
-                $base_url = "http://localhost/helperland1/Views/home.php";
+                $base_url = "http://localhost/TatvaSoft/Views/home.php";
                 header('Location: ' . $base_url);
       }
     }
@@ -236,7 +261,8 @@ class HelperlandController
         {
          ?>
             <div class="box1" style="margin-top: 30px;">
-    		 			<input type="radio" name="gender" style="width: 22px; height: 25px;margin: 10px;"><span class="s1">Address:<?php echo " ".$address['AddressLine1']." ".$address['AddressLine2']."," .$address['City']."," .$address['PostalCode']."."; ?> <br><p id="s1" style="margin-left: 30px;">Phone number:<?php echo $address['Mobile']; ?></p></span>
+    		 			<input type="radio" name="gender" style="width: 22px; height: 25px;margin: 10px;" value="<?php  echo $address['AddressId'] ?>" >
+              <span class="s1">Address:<?php echo " ".$address['AddressLine1']." ".$address['AddressLine2']."," .$address['City']."," .$address['PostalCode']."."; ?> <br><p id="s1" style="margin-left: 30px;">Phone number:<?php echo $address['Mobile']; ?></p></span>
     		   	</div> 
          <?php
          
@@ -256,7 +282,7 @@ class HelperlandController
     }
     public function servicerequest(){
 
-      //  $Servicestartdate = $_POST['date']." ".$_POST['tdate'];
+       $Servicestartdate = $_POST['date']." ".$_POST['tdate'];
 
       $array= [
         'UserId'=> $_SESSION['UserId'],
@@ -269,8 +295,56 @@ class HelperlandController
         'Comments' =>$_POST['comments'],
         'HasPets'=>$_POST['haspet']
       ];
-           $this->model->add_service_request($array);
-        // echo $Servicestartdate;
+         $reqid =  $this->model->add_service_request($array);
+         $saddid = $_POST['saddid'];
+         $reqAdd = [
+              'reqid' => $reqid,
+              'addid' => $saddid,
+         ];
+         $this->model->add_service_request_address($reqAdd);
+         $SpList =$this->model->getServiceById($_POST['postalcode']);
+
+         foreach($SpList as $Sps){
+              $to_email = $Sps['Email'];
+              $subject = "New Service Request";
+              $body = "helperland  company got new service request";
+              $headers = "From: nishanavalkha2251@gmail.com";
+              mail($to_email, $subject, $body, $headers);
+              //echo $Sps['Email'];
+          }
+       
+           //echo $Sps['Email']; 
+    }
+    public function dbboard(){
+      // $list=$this->model->dbboard($_SESSION['UserId']);
+        echo "hi";
+      // ?>
+                                      <!-- <tr class="t-row">
+                                            <td>2323</td>
+                                            <td>
+                                                <p class="date"><img src="../assets/image/calendar.png"> 31/03/2018</p>
+                                                <p>12:00 - 18:00</p>
+                                            </td>
+                                            <td> 
+                                                <div class="a flex-wrap row">
+                                                    <div class="ro"><img src="../assets/image/forma-1-copy-19.png"></div>
+                                                   <div>
+                                                        <p class="lum-watson">Lyum Watson</p>
+                                                        <div class="rateyo" id= "rating"  data-rateyo-rating="3" > </div>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <p class="">&euro; 63</p>
+                                            </td>
+                                            
+                                            <td >
+                                            <button  class="reschedule" >Reschedule</button>
+                                            <button  class="cancel" >Cancel</button>
+                                            </td>
+                                        </tr>  -->
+                                        
+     
     }
    
   }

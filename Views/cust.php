@@ -21,7 +21,7 @@ else{
 	 
 	// echo '<script> alert("ple login please!"); </script>';"
 		
-     $base_url ="http://localhost/helperland1/Views/home.php";
+     $base_url ="http://localhost/TatvaSoft/Views/home.php";
 		header('Location:' . $base_url);
 	}
 	
