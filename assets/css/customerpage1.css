@@ -4,75 +4,11 @@
     padding: 0;
 }
 
-header {
-    width: 1367px;
-    height: 80px;
-    background-color: #525252;
-}
-
-.navbar {
-    margin-left: 540px;
-}
-
-.navbar ul {
-    display: flex;
-    margin-top: -60px;
-}
-
-.navbar ul li {
-    height: 30px;
-    margin-left: 10px;
-    text-decoration: none;
-    list-style: none;
-}
-
-.navbar ul li a {
-    font-weight: bolder;
-    font-size: 19px;
-    padding: 10px 7px 9px 13px;
-    margin: 4px 5px 6px 8px;
-    font-weight: normal;
-    font-family: normal;
-    text-decoration: none;
-    list-style: none;
-    color: white;
-}
-
-.badge {
-    position: absolute;
-    margin-top: -3px;
-    width: 23px;
-    background-color: red;
-    margin-left: -10px;
-    height: 20px;
-    color: white;
-}
-
-.lo:hover {
-    background-color: #006072;
-}
-
-.book {
-    background-color: #006072;
-    color: white;
-    border: 1px solid white;
-    border-radius: 30px;
-}
-
-.book:hover {
-    background-color: black;
-    display: block;
-}
-
-.simple:hover {
-    background-color: black;
-}
-
 .welcome {
-    width: 1366px;
-    height: 100px;
+    width: 1367px;
+    height: 170px;
     background-color: #f9f9f9;
-    padding-top: 20px;
+    padding-top: 80px;
 }
 
 .Welcome-Sandip {
@@ -488,6 +424,10 @@ header {
     font-size: 14px;
     display: inline-flex;
     color: white;
+}
+
+.footer ul li a:hover {
+    background-color: #0c7286;
 }
 
 .last1 {

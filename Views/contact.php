@@ -10,11 +10,25 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
+<?php
+    if(!isset($_SESSION))
+    {
+        session_start();
+    }
+     if (!isset($_SESSION['UserId'])) { ?>
+        <link rel="stylesheet" href="../assets/css/navbar.css">
+    <?php  } ?>
+    <?php if (isset($_SESSION['UserId'])) { ?>
+        <link rel="stylesheet" href="../assets/css/loginav.css">
+    <?php
+    }
+ ?>
 
-     <?php include 'header.php';?>
+     <?php include 'custnav.php';?>
 
-
-<img src="../assets\image/group-16_2.png">
+<div class="ii">
+<img src="../assets/image/group-16_2.png">
+</div>
 <div class="primary">
 <div class="pri" style="margin-left: 640px;"> Contact us </div>
     <div class="raw" style="color: #ccc; margin-left: 660px; ">----- <img src="../assets/image/separator.png" style="margin-top: 26px; width: 30px;  height: 20px; ">-----

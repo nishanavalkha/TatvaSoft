@@ -5,80 +5,6 @@
     height: auto;
 }
 
-header {
-    width: 1347px;
-    height: 80px;
-    position: fixed;
-    background-color: #525252;
-}
-
-.logo1 img {
-    width: 76px;
-    height: 80px;
-    padding: 9px 0 5px 5px;
-}
-
-
-/* nav bar*/
-
-.navbar {
-    margin-top: -53px;
-    margin-left: 480px;
-    align-items: center;
-}
-
-.navbar ul {
-    display: flex;
-}
-
-.navbar ul li {
-    font-family: roboto;
-    font-weight: normal;
-    margin-left: 16px;
-    color: white;
-    text-decoration: none;
-    list-style: none;
-}
-
-.navbar ul li a {
-    color: white;
-    text-decoration: none;
-    list-style: none;
-    font-size: 17px;
-    padding: 6px 5px 6px 4px;
-    font-weight: normal;
-    font-family: normal;
-    text-decoration: none;
-    list-style: none;
-    margin: 6px 7px 9px 9px;
-}
-
-.book {
-    background-color: #006072;
-    border: 1px solid white;
-    border-radius: 30px;
-    padding-right: 10px;
-}
-
-.book:hover {
-    background-color: black;
-    display: block;
-}
-
-.books {
-    border: 1px solid white;
-    border-radius: 30px;
-}
-
-.books:hover {
-    background-color: black;
-    display: block;
-}
-
-.simple:hover {
-    background-color: black;
-}
-
 .era img {
     width: 1347px;
     height: 330px;
@@ -229,17 +155,3 @@ header {
     list-style-image: url("assets/image/right-arrow.png");
     text-align: left;
 }
-
-
-/* media quaries */
-
-@media( max-width: 200px) {}
-
-,
-ZipCode,
-ServiceHours,
-ExtraHours,
-SubTotal,
-TotalCost,
-Comments,
-HasPets

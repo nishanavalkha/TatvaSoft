@@ -11,10 +11,24 @@
   <link href="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.4/dist/sweetalert2.min.css" rel="stylesheet">
     
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    
+  <?php
+    if(!isset($_SESSION))
+    {
+        session_start();
+    }
+     if (!isset($_SESSION['UserId'])) { ?>
+        <link rel="stylesheet" href="../assets/css/navbar.css">
+    <?php  } ?>
+    <?php if (isset($_SESSION['UserId'])) { ?>
+        <link rel="stylesheet" href="../assets/css/loginav.css">
+    <?php
+    }
+ ?>
 </head>
 <body>
-	<header>
+
+<?php include('./custnav.php');    ?>
+	<!-- <header>
     	<div class="img-fluid container-fluid bg">
 			<img src="../assets/image/logo-large.png" class="logo img-fluid" style="width: 70px;height: 60px; margin-top:10px;" >
 			    <nav class="navbar">
@@ -37,7 +51,9 @@
             </ul>
         	</nav>
        </div>
-</header>
+</header> -->
+
+
   
      <div class="pri">  Set up your cleaning service </div>
     	<div class="raw" style="color: #ccc; margin-left: 660px;">-------- <img src="../assets/image/separator.png" style="margin-top: 26px; width: 30px;  height: 20px; ">--------

@@ -336,16 +336,9 @@ $(document).ready(function() {
 
     // });
 
-    function dashboard() {
-        alert("abc");
 
-        $.ajax({
-            type: "POST",
-            url: "http://localhost/TatvaSoft/?controller=Helperland&function=",
+    // alert("abc");
 
-            success: function(response) {
-                document.querySelector(".addnew").innerHTML = response;
-            }
-        });
-    }
+
+
 });

@@ -4,6 +4,8 @@
 	<title>Booking Now Page </title>
 
 	<link rel="stylesheet" type="text/css" href="../assets/css/customerpage1.css">
+    <!-- <link rel="stylesheet" type="text/css" href="../assets/css/navbar.css"> -->
+
 	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <link rel="stylesheet" href="https://www.markuptag.com/bootstrap/5/css/bootstrap.min.css" />
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
@@ -12,15 +14,38 @@
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
   <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css'>
+  <link href="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.4/dist/sweetalert2.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/rateYo/2.3.2/jquery.rateyo.min.css">
+
+  <?php
+    if(!isset($_SESSION))
+    {
+        session_start();
+    }
+     if (!isset($_SESSION['UserId'])) { ?>
+        <link rel="stylesheet" href="../assets/css/navbar.css">
+    <?php  } ?>
+    <?php if (isset($_SESSION['UserId'])) { ?>
+        <link rel="stylesheet" href="../assets/css/loginav.css">
+    <?php
+    }
+ ?>
+
 </head>
 <body>
+
+
+
+        <?php include('./custnav.php');    ?>
+
+
 
     <!-- modal servicedetail content -->
 
     <div class="modal fade" id="servicedetailmodal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered" id="mod" role="document">
             <div class="modal-content SD">
-                <div class="modal-header">
+                <!-- <div class="modal-header">
                     <h5 class="modal-title" id="exampleModalLongTitle">Service Details</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
@@ -139,7 +164,7 @@
                 <div class="modal-footer ft">
                     <button name="submit" class="btn btn-reschedule" data-bs-toggle="modal" data-bs-target="#reschedule_modal"><i class="fa fa-history" aria-hidden="true"></i>&nbsp; Reschedule</button>
                     <button name="submit" class="btn btn-cancel" data-bs-toggle="modal" data-bs-target="#bookingrequest_modal"><i class="fa fa-times" aria-hidden="true"></i>&nbsp; Cancel</button>
-                </div> 
+                </div>   -->
             </div>
         </div>
     </div> 
@@ -205,10 +230,10 @@
 <!-- cancel modal end -->
 <!-- rate spmodal -->
 
-<div class="modal fade" id="ratesp_modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered" role="document">
+ <div class="modal fade" id="ratemodal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered temp-rating" role="document">
             <div class="modal-content ratesp">
-                <div class="modal-header">
+              <!--  <div class="modal-header">
                     <h3 class="modal-title" id="exampleModalLongTitle">
                         <div class="d-flex align-items-center justify-content-left">
                             <div>
@@ -217,11 +242,7 @@
                             <div class="ps-2">
                                 <p class="sp-details">Lyum Watson</p>
                                 <p class="sp-details">
-                                    <img src="../assets/image/star1.png" alt="star">
-                                    <img src="../assets/image/star1.png" alt="star">
-                                    <img src="../assets/image/star1.png" alt="star">
-                                    <img src="../assets/image/star1.png" alt="star">
-                                    <img src="../assets/image/star2.png" alt="star">
+                                <div class="rateyo" id= "rating"  data-rateyo-rating=" 4"></div>
                                     <span>3.67</span>
                                 </p>
                             </div>
@@ -237,11 +258,8 @@
                                 <label class="subtext">On time arrival</label>
                             </div>
                             <div class="col-sm-7">
-                            <img src="../assets/image/star1.png" alt="star">
-                                    <img src="../assets/image/star1.png" alt="star">
-                                    <img src="../assets/image/star1.png" alt="star">
-                                    <img src="../assets/image/star1.png" alt="star">
-                                    <img src="../assets/image/star2.png" alt="star">
+                            
+                            <div class="rateyo" id= "rating" ></div>
                             </div>
                         </div>
                         <div class="row">
@@ -249,11 +267,8 @@
                                 <label class="subtext">Friendly</label>
                             </div>
                             <div class="col-sm-7">
-                            <img src="../assets/image/star1.png" alt="star">
-                                    <img src="../assets/image/star1.png" alt="star">
-                                    <img src="../assets/image/star1.png" alt="star">
-                                    <img src="../assets/image/star1.png" alt="star">
-                                    <img src="../assets/image/star2.png" alt="star">
+                            
+                            <div class="rateyo" id= "rating"  ></div>
                             </div>
                         </div>
                         <div class="row">
@@ -261,11 +276,8 @@
                                 <label class="subtext">Quality of service</label>
                             </div>
                             <div class="col-sm-7">
-                            <img src="../assets/image/star1.png" alt="star">
-                                    <img src="../assets/image/star1.png" alt="star">
-                                    <img src="../assets/image/star1.png" alt="star">
-                                    <img src="../assets/image/star1.png" alt="star">
-                                    <img src="../assets/image/star2.png" alt="star">
+                            
+                            <div class="rateyo" id= "rating"  ></div>
                             </div>
                         </div>
                         <div class="row">
@@ -278,16 +290,16 @@
                 </div>
                 <div class="modal-footer">
                     <button name="submit" class="btn btn-ratesp-submit">Submit</button>
-                </div> 
-            </div>
+                </div> -->
+            </div> 
         </div>
-    </div>
+    </div> 
 
 
 
 
 <!-- rate sp modal end -->
-	<header>
+	<!-- <header>
     	<div class="img-fluid container-fluid bg">
 			<img src="../assets/image/logo-large.png" class="logo img-fluid" style="width: 70px;height: 60px; margin-top:10px;" >
 			    <nav class="navbar">
@@ -311,7 +323,9 @@
                     </ul>
         	    </nav>
        </div>
-    </header>
+    </header> -->
+
+    
 
     <div class="text-center welcome">
 	    <span class="Welcome-Sandip">Welcome,
@@ -341,7 +355,7 @@
             
                     <!-- row data 1 content -->
                         <div class="container-fluid row" id="rightsidebar" style="margin-top:14px;"> 
-                            <div class="col" data-bs-toggle="modal" data-bs-target="#servicedetailmodal">
+                            <div class="col">
                             
                                 <table id="content-table" class="table">
                                     <thead>
@@ -350,7 +364,7 @@
                                             <th >Service Date </th>
                                             <th >Sevice Provider </th>
                                             <th class="" style="padding-left:10px;">Payment</th>
-                                            <th class=""style="padding-left:50px;">Action</th>
+                                            <th class="" style="padding-left:50px;">Action</th>
                                         </tr>
                                     </thead>
                                     
@@ -375,12 +389,12 @@
                                                 <p class="">&euro; 63</p>
                                             </td>
                                             
-                                            <td >
+                                            <td>
                                             <button  class="reschedule" >Reschedule</button>
                                             <button  class="cancel" >Cancel</button>
                                             </td>
-                                        </tr> 
-                                         -->
+                                        </tr>  -->
+                                        
                                     </tbody>
                                     
                                 </table>
@@ -410,7 +424,7 @@
                                     </thead>
                                     <tbody class="history">
                                         
-                                        <tr class="t-row">
+                                        <!-- <tr class="t-row">
                                             <td><p>2323</p></td>
                                             <td>
                                                 <p class="date"><img src="../assets/image/calendar2.png"> 31/03/2018</p>
@@ -436,7 +450,7 @@
                                             </td>
                                             <td><div class="status-completed text-center">Completed</div></td>
                                             <td ><button  class="rate-sp" style="margin-top:14px;" >Rate SP</button></td>
-                                        </tr> 
+                                        </tr>  -->
                                     </tbody>
                                 </table>
                             </div> 
@@ -487,10 +501,10 @@
 <div class="nn">
       
         <ul>
-          <li><a href="#" style="text-decoration: none;">HOME</a></li>
-          <li><a href="#" style="text-decoration: none;">ABOUT</a></li>
+          <li><a href="http://localhost/TatvaSoft/Views/home.php" style="text-decoration: none;">HOME</a></li>
+          <li><a href="http://localhost/TatvaSoft/Views/about.php" style="text-decoration: none;">ABOUT</a></li>
           <li><a href="#" style="text-decoration: none;">TESTIMONIALS</a></li>
-          <li><a href="#" style="text-decoration: none;">FAQS</a></li>
+          <li><a href="http://localhost/TatvaSoft/Views/faq.php" style="text-decoration: none;">FAQS</a></li>
           <li><a href="#" style="text-decoration: none;">INSURANCE</a></li>
           <li><a href="#" style="text-decoration: none;">POLICY</a></li>
           <li><a href="#" style="text-decoration: none;">IMPRESSUM</a></li>
@@ -513,7 +527,9 @@
 <!-- footer end -->
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
-  
-
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.4/dist/sweetalert2.all.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script  src="../assets/js/customer.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/rateYo/2.3.2/jquery.rateyo.min.js"></script>
 </body>
 </html>

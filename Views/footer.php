@@ -6,10 +6,10 @@
 <div class="nn">
       
         <ul>
-          <li><a href="#" style="text-decoration: none;">HOME</a></li>
-          <li><a href="#" style="text-decoration: none;">ABOUT</a></li>
+          <li><a href="http://localhost/TatvaSoft/Views/home.php" style="text-decoration: none;">HOME</a></li>
+          <li><a href="http://localhost/TatvaSoft/Views/about.php" style="text-decoration: none;">ABOUT</a></li>
           <li><a href="#" style="text-decoration: none;">TESTIMONIALS</a></li>
-          <li><a href="#" style="text-decoration: none;">FAQS</a></li>
+          <li><a href="http://localhost/TatvaSoft/Views/faq.php" style="text-decoration: none;">FAQS</a></li>
           <li><a href="#" style="text-decoration: none;">INSURANCE</a></li>
           <li><a href="#" style="text-decoration: none;">POLICY</a></li>
           <li><a href="#" style="text-decoration: none;">IMPRESSUM</a></li>

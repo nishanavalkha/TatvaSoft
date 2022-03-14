@@ -46,8 +46,8 @@
 		<img src="../assets/image/logo-large.png" class="logo">
 		<nav class="navbar">
 			<ul>
-				<li><a href="#" title="book a cleaner" class="book">Book Now</a></li>
-				<li><a href="prices.html" title="prices">Prices</a></li>
+				<li><a href="booknow.php" title="book a cleaner" class="book">Book Now</a></li>
+				<li><a href="prices.php" title="prices">Prices</a></li>
 				<li><a href="#" title="our Guarantee">Warranty</a></li>
 				<li><a href="#" title="blob">Blog</a></li>
 				<li><a href="contact.php" title="contact">Contact us</a></li>

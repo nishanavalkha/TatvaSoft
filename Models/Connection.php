@@ -153,6 +153,120 @@ class Helperland
         return $row;
       // echo $result;
       }
+      function dbboard($userid)
+       {
+       $query = "SELECT * FROM servicerequest WHERE UserId = '$userid' AND  Status=1";
+       $result= mysqli_query($this->conn,$query);
+       $row= $result -> fetch_all(MYSQLI_ASSOC);
+       return $row;
+      }
 
+      function getUserbyId($id)
+    {
+        $query = "SELECT * FROM user WHERE UserId = '$id' ";
+        $result= mysqli_query($this->conn,$query);
+        $row = mysqli_fetch_assoc($result);
+        return $row;
+        
+    }
+    function SRByreqId($id)
+    {
+        $query = "SELECT * FROM servicerequest WHERE ServiceRequestId = '$id' ";
+        $result= mysqli_query($this->conn,$query);
+        $row = mysqli_fetch_assoc($result);
+        return $row;
+      
+    }
+    function getSRAddbySRId($id)
+    {
+        $sql = "SELECT * FROM servicerequestaddress WHERE ServiceRequestId = '$id' ";
+        $result= mysqli_query($this->conn,$sql);
+        $row = mysqli_fetch_assoc($result);
+        return $row ;
+    }
+    function getUserAddbyAddId($id)
+    {
+        $sql = "SELECT * FROM useraddress WHERE AddressId = '$id' ";
+        $result= mysqli_query($this->conn,$sql);
+        $row = mysqli_fetch_assoc($result);
+        return $row ; 
+    }
+    function getextrabySRId($rqid)
+    {
+        $sql = "SELECT * FROM servicerequestextra WHERE ServiceRequestId = '$rqid' ";
+        $result= mysqli_query($this->conn,$sql);
+        $row= $result -> fetch_all(MYSQLI_ASSOC);
+        return $row;
+    }
+    function getextrasbyextraId($id)
+    {
+        $sql = "SELECT * FROM extraservices WHERE ServiceExtraId = '$id' ";
+        $result= mysqli_query($this->conn,$sql);
+        $row = mysqli_fetch_assoc($result);
+        return $row ;
+    }
+
+    function service_history($userid){
+        $query = "SELECT * FROM servicerequest WHERE UserId = '$userid' AND  Status=2 OR Status=3";
+        $result = mysqli_query($this->conn,$query);
+        $row= $result -> fetch_all(MYSQLI_ASSOC);
+        return $row;
+    }
+   
+    function reschedule($datetime,$reqid){
+      $query = "UPDATE servicerequest SET ServiceStartDate ='$datetime' WHERE  ServiceRequestId = '$reqid'";
+      $result = mysqli_query($this->conn,$query);
+      return $result;
+    }
+    function cancel($comment,$reqid)
+    {
+     
+        $query = "UPDATE servicerequest SET Status =3,  Comments='$comment' WHERE  ServiceRequestId = '$reqid'";
+        $result = mysqli_query($this->conn,$query);
+        return $result;
+    }
+
+    function get_ratings_of_sp($table, $reqIdforreschedule)
+    {
+        $query = "SELECT * FROM $table WHERE ServiceRequestId = $reqIdforreschedule";
+        $result = mysqli_query($this->conn,$query);
+        $row = mysqli_fetch_assoc($result);
+        return $row ;
+    }
+
+    function submitratting($array,$checkrate)
+    {
+          $rateidforsub = $array['rateidforsub'];
+          $ratingfrom =$array['ratingfrom'];
+          $ratingto= $array['ratingto'];
+          $OnTimeArrival= $array['OnTimeArrival'];
+          $Friendly= $array['Friendly'];
+          $feedback= $array['feedback'];
+          $quality= $array['quality'];
+          $avgrate= $array['avgrate'];
+          $ratingdate= $array['ratingdate'];
+        if($checkrate==null)
+        {
+         
+         $query= "INSERT INTO rating(ServiceRequestId,RatingFrom,RatingTo,Ratings,Comments,RatingDate,OnTimeArrival,Friendly,QualityOfService) VALUES ('$rateidforsub','$ratingfrom','$ratingto','$avgrate','$feedback','$ratingdate','$OnTimeArrival','$Friendly','$quality')";
+          $result1= mysqli_query($this->conn,$query);
+          // return 'y';
+         
+        }
+        else{
+          $query= "UPDATE rating SET RatingFrom='$ratingfrom' , RatingTo='$ratingto' , Ratings='$avgrate' , Comments='$feedback' , RatingDate='$ratingdate' , OnTimeArrival='$OnTimeArrival' , Friendly='$Friendly' , QualityOfService='$quality'  WHERE  ServiceRequestId = '$rateidforsub' ";
+          mysqli_query($this->conn,$query);
+
+        }
+    }
+
+    function getratebyspid($id)
+    {
+      $query = "SELECT * FROM rating WHERE RatingTo = '$id'";
+      $result = mysqli_query($this->conn,$query);
+      $row= $result -> fetch_all(MYSQLI_ASSOC);
+      return $row;
+    }
+   
 }
 ?>

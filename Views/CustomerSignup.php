@@ -23,6 +23,7 @@
   unset($_SESSION['message']);
 ?>
 
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -37,10 +38,28 @@
 		 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
 
 		<link rel="stylesheet" href="../assets/css/CustomerSignup1.css">
+<?php
+    if(!isset($_SESSION))
+    {
+        session_start();
+    }
+     if (!isset($_SESSION['UserId'])) { ?>
+        <link rel="stylesheet" href="../assets/css/navbar.css">
+    <?php  } ?>
+    <?php if (isset($_SESSION['UserId'])) { ?>
+        <link rel="stylesheet" href="../assets/css/loginav.css">
+    <?php
+    }
+?>
 </head>
 <body>
+
+
+<?php include('./custnav.php');    ?>
+
+
 		<div class="row justify-content-center" id="acc">
-				<h1 class="text-center">Create an account</h1>
+				<h1 class="text-center" style="margin-top:100px;">Create an account</h1>
 
 				<div class="text-center">-------- <img class="star" src="../assets/image/forma-1-copy-5.png"> --------</div>
 		</div>
