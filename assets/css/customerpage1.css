@@ -434,3 +434,241 @@
     margin-left: 170px;
     margin-top: -30px;
 }
+
+.mysetting .btn-setting {
+    width: 100%;
+    height: 50px;
+    background-color: #FFFFFF;
+    border: none;
+    border-bottom: 2px solid #E1E1E1;
+    color: #4F4F4F;
+    border-radius: 0;
+    font-family: 'Roboto';
+    font-size: 18px;
+    font-weight: 500;
+}
+
+.mysetting .btn-setting.active {
+    color: #1D7A8C;
+    border-bottom: 2px solid #1D7A8C;
+    font-size: 18px;
+}
+
+.mysetting .button-body .details-body {
+    font-family: 'Roboto';
+    color: #4F4F4F;
+    font-size: 16px;
+    margin: 15px 0;
+}
+
+.mysetting .button-body .details-body label {
+    font-weight: 600;
+}
+
+.mysetting .button-body .details-body .input {
+    width: 100%;
+    height: 46px;
+    padding: 0 12px;
+    border: 1px solid #E1E1E1;
+    border-radius: 3px;
+    margin: 5px 0 15px 0;
+}
+
+.mysetting .button-body .details-body .input-group .input-group-text {
+    width: 54px;
+    height: 46px;
+    border: 1px solid #E1E1E1;
+    border-right: none;
+    border-radius: 3px 0 0 3px;
+    margin: 5px 0 15px 0;
+}
+
+.mysetting .button-body .details-body .input-group input {
+    width: calc(100% - 54px);
+    height: 46px;
+    margin: 5px 0 15px 0;
+    border: 1px solid #E1E1E1;
+    border-radius: 0 3px 3px 0;
+    padding-left: 15px;
+}
+
+.mysetting .button-body .details-body select {
+    color: #4F4F4F;
+    height: 46px;
+    border: 1px solid #E1E1E1;
+    margin: 5px 10px 15px 0;
+}
+
+.mysetting .button-body .details-body .details-save {
+    height: 46px;
+    color: #FFFFFF;
+    background-color: #1D7A8C;
+    border: 1px solid #1D7A8C;
+    padding: 5px 20px;
+    margin: 20px 0;
+    border-radius: 23px;
+}
+
+.mysetting .button-body .details-body .details-save:hover {
+    background-color: #29626D;
+}
+
+.mysetting .button-body .address-body {
+    font-family: 'Roboto';
+    color: #4F4F4F;
+    display: none;
+}
+
+.mysetting .button-body .address-body .addnewaddress {
+    height: 46px;
+    color: #FFFFFF;
+    background-color: #1D7A8C;
+    border: 1px solid #1D7A8C;
+    padding: 5px 20px;
+    margin: 20px 0;
+    border-radius: 23px;
+}
+
+.mysetting .button-body .address-body .addnewaddress:hover {
+    background-color: #29626D;
+}
+
+.mysetting .button-body .address-body .address-table {
+    width: 820px;
+    margin: 15px 0;
+    border: 1px solid #E1E1E1;
+}
+
+.mysetting .button-body .address-body .address-table .text-right {
+    text-align: right;
+}
+
+.mysetting .button-body .address-body .address-table .text-right div {
+    padding: 0 45px;
+}
+
+.mysetting .button-body .address-body .address-table .text-right .fa-edit,
+.fa-trash-o {
+    color: #A7A2A2;
+    font-size: 20px;
+    font-weight: 100;
+}
+
+.mysetting .button-body .address-body .address-table thead {
+    background-color: #E1E1E1;
+}
+
+.mysetting .button-body .address-body .address-table thead th {
+    padding: 20px 60px !important;
+}
+
+.mysetting .button-body .address-body .address-table tbody tr {
+    border-top: 1px solid #E1E1E1;
+}
+
+.mysetting .button-body .address-body .address-table tbody tr td .addressline {
+    display: flex;
+    padding: 0 45px;
+}
+
+.mysetting .button-body .address-body .address-table tbody tr td {
+    padding: 10px 0px;
+}
+
+.details-body .row .col-md-4 .input-element {
+    width: 160px;
+    height: 46px;
+    font-family: 'Roboto';
+    font-size: 14px;
+    height: 35px;
+    color: #646464;
+    border: 1px solid #E1E1E1;
+    padding: 0px 10px;
+    margin: 16px 10px 0px 0px;
+}
+
+
+/* settings tabs */
+
+.mysetting .button-body .password-body {
+    font-family: 'Roboto';
+    font-size: 16px;
+    color: #4F4F4F;
+    font-weight: 500;
+    display: none;
+}
+
+.mysetting .button-body .password-body .password-label {
+    margin: 15px 0 5px 0;
+}
+
+.mysetting .button-body .password-body .password-input {
+    width: 300px;
+    height: 45px;
+    padding: 5px 10px;
+    border: 1px solid #E1E1E1;
+}
+
+.mysetting .button-body .password-body .password-save {
+    height: 46px;
+    color: #FFFFFF;
+    background-color: #1D7A8C;
+    border: 1px solid #1D7A8C;
+    padding: 5px 20px;
+    margin: 20px 0;
+    border-radius: 23px;
+}
+
+.mysetting .button-body .password-body .password-save:hover {
+    background-color: #29626D;
+}
+
+
+/* edit modal css */
+
+.modal .modal-dialog .modal-content .modal-body .addresslable {
+    font-weight: 600;
+}
+
+.modal .modal-dialog .modal-content .modal-body .input {
+    width: 100%;
+    height: 46px;
+    padding: 0 12px;
+    border: 1px solid #E1E1E1;
+    border-radius: 3px;
+    margin: 5px 0 15px 0;
+}
+
+.modal .modal-dialog .modal-content .modal-body .input-group .input-group-text {
+    width: 54px;
+    height: 46px;
+    border: 1px solid #E1E1E1;
+    border-right: none;
+    border-radius: 3px 0 0 3px;
+    margin: 5px 0 15px 0;
+}
+
+.modal .modal-dialog .modal-content .modal-body .input-group input {
+    width: calc(100% - 54px);
+    height: 46px;
+    margin: 5px 0 15px 0;
+    border: 1px solid #E1E1E1;
+    border-radius: 0 3px 3px 0;
+    padding-left: 15px;
+}
+
+.modal .modal-dialog .modal-content .modal-footer .btn-addresssave {
+    width: 100%;
+    height: 46px;
+    font-family: 'Roboto';
+    font-size: 16px;
+    font-weight: 400;
+    color: #FFFFFF;
+    background-color: #1D7A8C;
+    border: 1px solid #1D7A8C;
+    border-radius: 23px;
+}
+
+.modal .modal-dialog .modal-content .modal-footer .btn-addresssave:hover {
+    background-color: #29626D;
+}

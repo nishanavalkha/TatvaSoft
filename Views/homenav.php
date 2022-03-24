@@ -29,7 +29,8 @@ if (!isset($_SESSION['UserId'])) { ?>
                         <a class="nav-link Contact" title="Contact" href="contact.php">Contact</a>
                     </li>
                     <li class="nav-item  login">
-                        <a class="nav-link log-in" title="Login" href=".#modalform">Login</a>
+                        <a class="nav-link log-in" title="Login" href="" data-bs-toggle="modal"
+                            data-bs-target="#Modalform">Login</a>
                     </li>
                     <li class="nav-item  helper">
                         <a class="nav-link helper1" title="Become a Service Provider" href="SpSignup.php">Become a Helper</a>
@@ -81,7 +82,7 @@ if (!isset($_SESSION['UserId'])) { ?>
   <img src="http://localhost/TatvaSoft/assets/image/admin-user.png">
   </a>
    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-        <li><a class="dropdown-item" href="#">Welcome,<b><?php echo $_SESSION['username']; ?></b></a></li>
+        <li><a class="dropdown-item" href="#">Welcome,<b class="" style="color:black;" > <?php echo $_SESSION['username'];  ?></b></a></li>
             <div class="dropdown-divider"></div>
                             <a class="dropdown-item" href="#">User Profile</a>
                             <a class="dropdown-item mysettingbtn" href="./customerpage.php">Setting</a>
@@ -125,7 +126,7 @@ if (!isset($_SESSION['UserId'])) { ?>
                 <ul class=" nav ">
                     <li class="nav-item">
                         <h1 class="wlcm">Welcome,
-                    <li class="nav-item"><span class="wlcm-nm"><?php echo $_SESSION['username']; ?></span></li>
+                    <li class="nav-item"><span class="wlcm-nm"><?php echo $_SESSION["name"]; ?></span></li>
                     </h1>
 
                     </li>
@@ -167,7 +168,7 @@ if (!isset($_SESSION['UserId'])) { ?>
                             My Setting </a>
                     </li>
                     <li class="nav-item">
-                    <form method="POST" action="http://localhost/TatvaSoft/?controller=Helperland&function=logout">
+                    <form method="POST" action=<?= $base_url."./?controller=helperland&function=logout"?>>
                                     <button class="dropdown-item logout" name="logout" type="submit">Logout</button>
                                 </form>
                     </li>

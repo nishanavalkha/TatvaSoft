@@ -1,21 +1,21 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Booking Now Page </title>
+	<title>customer page</title>
 
 	<link rel="stylesheet" type="text/css" href="../assets/css/customerpage1.css">
-    <!-- <link rel="stylesheet" type="text/css" href="../assets/css/navbar.css"> -->
+    
 
 	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <link rel="stylesheet" href="https://www.markuptag.com/bootstrap/5/css/bootstrap.min.css" />
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
-  <!-- <link href="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.4/dist/sweetalert2.min.css" rel="stylesheet"> -->
+  
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
   <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css'>
   <link href="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.4/dist/sweetalert2.min.css" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/rateYo/2.3.2/jquery.rateyo.min.css">
+
 
   <?php
     if(!isset($_SESSION))
@@ -299,55 +299,86 @@
 
 
 <!-- rate sp modal end -->
-	<!-- <header>
-    	<div class="img-fluid container-fluid bg">
-			<img src="../assets/image/logo-large.png" class="logo img-fluid" style="width: 70px;height: 60px; margin-top:10px;" >
-			    <nav class="navbar">
-				    <ul>
-                	<li><a href="" class="book"> Book now</a> </li>
-                    <li><a href="" class="simple"> Prices & services </a> </li>
-                    <li><a href="" class="simple"> Warranty</a> </li>
-                    <li><a href="" class="simple"> Blog </a></li>
-                    <li><a href="" class="simple"> Contact</a> </li>
-                    <a href="" style="margin-left: 26px;"><img class="lo" src="../assets/image/icon-notification.png">
-                            <span class="badge">2</span>
-                    </a>
-                    <li><button class="btn"><img src="../assets/image/user.png"> 
-                                            <select>  
-                                                <option>1</option>
-                                                <option>2</option>
-                                                <option>3</option>
-                                           	</select>
-                        </button>
-                    </li>
-                    </ul>
-        	    </nav>
-       </div>
-    </header> -->
-
+	<!-- edit modal -->
+    <div class="modal fade" id="addedit_address_modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" id="mod" role="document">
+            <div class="modal-content addmodal">
+                <div class="modal-header">
+                    <h3 class="modal-title" id="exampleModalLongTitle">Edit Address</h3>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    <!-- <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button> -->
+                </div>
+                <div class="modal-body addeditaddress">
+                    <!-- <div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <label class="text-danger err"></label>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <label class="addresslable" for="streetname">Street name</label><br>
+                                <input class="input" type="text" name="streetname" placeholder="Street name">
+                            </div>
+                            <div class="col-md-6">
+                                <label class="addresslable" for="housenumber">House number</label><br>
+                                <input class="input" type="text" name="housenumber" placeholder="House number">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <label class="addresslable" for="postalcode">Postal code</label><br>
+                                <input class="input" type="text" name="postal_code" placeholder="360005">
+                            </div>
+                            <div class="col-md-6">
+                                <label class="addresslable" for="city">City</label><br>
+                                <input class="input" type="text" name="city" placeholder="Bonn">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <label class="addresslable" for="phonenumber">Phone number</label><br>
+                                <div class="input-group">
+                                    <span class="input-group-text" id="basic-addon1">+49</span>
+                                    <input type="text" id="phonenumber" name="phonenumber" placeholder="9745643546">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                    <button name="submit" class="btn btn-addresssave">save</button>
+                    </div>  -->
+                </div>
+                
+            </div>
+        </div>
+    </div>
     
-
+<!-- edit modal end -->
     <div class="text-center welcome">
 	    <span class="Welcome-Sandip">Welcome,
-  		    <span class="text-style-1">Sandip!</span>
+  		    <span class="text-style-1"><?php echo $_SESSION['username']; ?></span>
 	    </span>
     </div>
 
 
 
 <div class="d-flex align-items-start">
-        <div class="nav flex-column nav-pills navbar-content" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+        <div class="nav flex-column nav-pills navbar-content leftsidebar" id="v-pills-tab" role="tablist" aria-orientation="vertical">
                 <a class="nav-link active" id="v-pills-dashboard-tab" data-bs-toggle="pill" data-bs-target="#v-pills-dashboard" type="button" role="tab" aria-controls="v-pills-dashboard" aria-selected="true">Dashboard</button>
-                <a class="nav-link" style="border-bottom:1px solid white;" id="v-pills-history-tab" data-bs-toggle="pill" data-bs-target="#v-pills-history" type="button" role="tab" aria-controls="v-pills-history" aria-selected="false">Service History</button>
+                <!-- <a class="nav-link" id="v-pills-newservice-tab" data-bs-toggle="pill" data-bs-target="#v-pills-newservice" type="button" role="tab" aria-controls="v-pills-newservice" aria-selected="false">New Service Requests</button> -->
+                <!-- <a class="nav-link" id="v-pills-upcomingservice-tab" data-bs-toggle="pill" data-bs-target="#v-pills-upcomingservice" type="button" role="tab" aria-controls="v-pills-upcomingservice" aria-selected="false">Upcoming Services</button> -->
                 <a class="nav-link" id="v-pills-schedule-tab" data-bs-toggle="pill" data-bs-target="#v-pills-schedule" type="button" role="tab" aria-controls="v-pills-schedule" aria-selected="false">Service Schedule</button>
-                <a class="nav-link" id="v-pills-pros-tab" data-bs-toggle="pill" data-bs-target="#v-pills-pros" type="button" role="tab" aria-controls="v-pills-pros" aria-selected="false">Favourite</button>
+                <a class="nav-link" style="border-bottom:1px solid white;" id="v-pills-history-tab" data-bs-toggle="pill" data-bs-target="#v-pills-history" type="button" role="tab" aria-controls="v-pills-history" aria-selected="false">Service History</button>
+                <!-- <a class="nav-link" id="v-pills-myrating-tab" data-bs-toggle="pill" data-bs-target="#v-pills-myrating" type="button" role="tab" aria-controls="v-pills-myrating" aria-selected="false">My Ratings</button> -->
+                <a class="nav-link" id="v-pills-block-tab" data-bs-toggle="pill" data-bs-target="#v-pills-block" type="button" role="tab" aria-controls="v-pills-block" aria-selected="false">Block Customer</button>
                 <a class="nav-link" id="v-pills-invoices-tab" data-bs-toggle="pill" data-bs-target="#v-pills-invoices" type="button" role="tab" aria-controls="v-pills-invoices" aria-selected="false">Invoices</button>
-                <a class="nav-link" id="v-pills-notification-tab" data-bs-toggle="pill" data-bs-target="#v-pills-notification" type="button" role="tab" aria-controls="v-pills-notification" aria-selected="false">Notification</button>
+                <a class="nav-link" id="v-pills-notification-tab" data-bs-toggle="pill" href="#" type="button" role="tab" aria-controls="v-pills-notification" aria-selected="false">Notification</button>
         </div>
         
         <div class="tab-content" id="v-pills-tabContent">
             <div class="tab-pane fade show active" id="v-pills-dashboard" role="tabpanel" aria-labelledby="v-pills-dashboard-tab">
-                 <div class="container-fluid row" style="margin-top:8px;">
+                <div class="container-fluid row" style="margin-top:8px;">
                             <div class="go"><h3 class="serhist">Current Service Requests</h3>
                                 <div class="btnaddnew"> <button class="btn ml-auto addnew">Add New Service Request</button></div>
                             </div>
@@ -457,10 +488,122 @@
                         </div> 
 
             </div>
+           
+            <!-- <div class="tab-pane fade" id="v-pills-upcomingservice" role="tabpanel" aria-labelledby="v-pills-upcomingservice-tab">hjjj</div> -->
             <div class="tab-pane fade" id="v-pills-schedule" role="tabpanel" aria-labelledby="v-pills-schedule-tab">.abc..</div>
-            <div class="tab-pane fade" id="v-pills-pros" role="tabpanel" aria-labelledby="v-pills-pros-tab">..bvc.</div>
+            <!-- <div class="tab-pane fade" id="v-pills-myrating" role="tabpanel" aria-labelledby="v-pills-myrating-tab">..bvc.</div> -->
+            <div class="tab-pane fade" id="v-pills-block" role="tabpanel" aria-labelledby="v-pills-block-tab">..bvc.</div>
             <div class="tab-pane fade" id="v-pills-invoices" role="tabpanel" aria-labelledby="v-pills-invoices-tab">.xas..</div>
-            <div class="tab-pane fade" id="v-pills-notification" role="tabpanel" aria-labelledby="v-pills-notification-tab">...xas</div>
+            <div class="tab-pane fade" id="v-pills-notification" role="tabpanel" aria-labelledby="v-pills-notification-tab">
+        <!-- content mysetting -->
+
+                <div class="customer-table mysetting">
+                            <div class="d-flex align-items-center justify-content-center">
+                                <button class="btn btn-setting details active">My Details</button>
+                                <button class="btn btn-setting addresses">My Addresses</button>
+                                <button class="btn btn-setting password">Change Password</button>
+                            </div>
+                            <hr>
+                            <div class="button-body">
+                                <div class="details-body">
+                                    <!-- <div class="row">
+                                        <div class="col-md-4">
+                                        
+                                            <label for="fname" class="form-label">First name</label><br>
+                                            <input type="text" class="input form-control" name="fname" placeholder="First name">
+                                        </div>
+                                        <div class="col-md-4">
+                                            <label for="lname" class="form-label">Last name</label><br>
+                                            <input type="text" class="input form-control" name="lname" placeholder="Last name">
+                                        </div>
+                                        <div class="col-md-4">
+                                            <label for="email" class="form-label">E-mail address</label><br>
+                                            <input type="email" class="input form-control" name="email" placeholder="E-mail address">
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-4">
+                                            <label for="mobile" class="form-label">Mobile number</label>
+                                            <div class="input-group">
+                                                <span class="input-group-text" id="basic-addon1">+49</span>
+                                                <input type="text" class="input form-control" name="mobile" placeholder="Mobile number" required>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4" >
+                                            <label for="birthdate">Date of Birth</label><br>
+                                           
+                                            <input class="input-element date" style="margin-top:16px;" type="date" id="formdate" name="formdate" data placeholder="From Date">
+                                        </div>
+                                    </div>
+                                    <hr>
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <label for="language">My Preferred Language</label><br>
+                                            <select name="language" id="language" required>
+                                                <option value="Gujarati">English</option>
+                                                <option value="Maths">Hindi</option>
+                                                <option value="Science">Gujarati</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div><button class="btn details-save" >save</button></div>  -->
+                                </div>
+                                <div class="address-body">
+                                    <table class="address-table">
+                                        <thead>
+                                            <tr>
+                                                <th>Addresses</th>
+                                                <th class="text-right">Action</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody class="addressinsettings">
+                                            <!-- <tr>
+                                                <td>
+                                                    <div class="addressline">
+                                                        <div><b>Address:</b></div>&nbsp;
+                                                        <div>Prabhukrupa, 360005-Rajkot</div>
+                                                    </div>
+                                                    <div class="addressline">
+                                                        <div><b>Phone Number:</b></div>&nbsp;
+                                                        <div>9845968794</div>
+                                                    </div>
+                                                </td>
+                                                <td class="text-right">
+                                                    <div>
+                                                        <i class="address-edit fa fa-edit" data-bs-toggle="modal" data-bs-target="#addedit_address_modal"></i>&nbsp;
+                                                        <i class="fa fa-trash-o" aria-hidden="true"></i>
+                                                    </div>
+                                                </td>
+                                            </tr> -->
+                                            
+                                            
+                                        </tbody>
+                                    </table>
+                                    <div><button class="addnewaddress">Add New Address</button></div>
+                                </div>
+                                <div class="password-body">
+                                    <div class="password_error text-danger"></div>
+                                    <div>
+                                        <label class="password-label" for="oldpassword">Old Password</label> <br>
+                                        <input class="password-input" type="password" name="oldpassword" placeholder="Current Pasword" required>
+                                    </div>
+                                    <div>
+                                        <label class="password-label" for="newpassword">New Password</label> <br>
+                                        <input class="password-input" type="password" name="newpassword" placeholder="Password" required>
+                                    </div>
+                                    <div>
+                                        <label class="password-label" for="confirmpassword">Confirm Password</label> <br>
+                                        <input class="password-input" type="password" name="confirmpassword" placeholder="Confirm Password" required>
+                                    </div>
+                                    <div><button class="password-save">Save</button></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            
         </div>
 </div>
 
@@ -530,6 +673,11 @@
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.4/dist/sweetalert2.all.min.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script  src="../assets/js/customer.js"></script>
+<script  src="../assets/js/common.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.4/dist/sweetalert2.all.min.js"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/rateYo/2.3.2/jquery.rateyo.min.js"></script>
 </body>
 </html>

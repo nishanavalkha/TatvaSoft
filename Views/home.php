@@ -22,6 +22,19 @@
   unset($_SESSION['mailstatus']);
 
 ?>
+<?php
+    if(!isset($_SESSION))
+    {
+        session_start();
+    }
+     if (!isset($_SESSION['UserId'])) { ?>
+        <link rel="stylesheet" href="../assets/css/navbar.css">
+    <?php  } ?>
+    <?php if (isset($_SESSION['UserId'])) { ?>
+        <link rel="stylesheet" href="../assets/css/loginav.css">
+    <?php
+    }
+ ?>
 
 <!DOCTYPE html>
 <html>
@@ -35,14 +48,15 @@
         <!-- Bootstrap CSS -->
          <!-- <link rel="stylesheet" href="https://www.markuptag.com/bootstrap/5/css/bootstrap.min.css" /> -->
 		 <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-		  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"> 
+		  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+		  <link href="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.4/dist/sweetalert2.min.css" rel="stylesheet"> 
  
 		 <link rel="stylesheet" href="http://localhost/TatvaSoft/assets/css/home1.css">
 	</head>
 	<body>
 		
-
-
+	
+	<?php include './homenav.php';?>
 
 			<!-- modal-->
 
@@ -70,9 +84,9 @@
                                 Remember Me
                             </label>
                         </div>
-                        <button type="submit" class="btn-login" href="http://localhost/TatvaSoft/Views/booknow.php" name="login"> Login</button>
+                        <button type="submit" class="btn-login"  name="login"> Login</button>
                          <div class="text-center mb-2"><a href="#" data-bs-toggle="modal"
-                            data-bs-target="#Modalform" data-bs-dismiss="modal" title="Forgot Password">Forgot Password?</a></div>
+                            data-bs-target="#fogotmodal" data-bs-dismiss="modal" title="Forgot Password">Forgot Password?</a></div>
                         <div class="text-center" style="color: black;">Don't have an account? <a href="http://localhost/TatvaSoft/Views/CustomerSignup.php">Create an account</a></div>
                     </form>
                     </div>
@@ -83,7 +97,7 @@
 
 			 <!---------------------------------------------- Model For Forgot Password ------------------------------------------------------>
 
-    <div class="modal " id="Modalform" tabindex="-1" aria-labelledby="exampleModalLabel2" aria-hidden="true">
+    <div class="modal" id="fogotmodal" tabindex="-1" aria-labelledby="exampleModalLabel2" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
                 <div class="modal-header">
@@ -98,7 +112,7 @@
                         </div>
                          <button type="Submit"  name="Send"  class="btn-login">Send</button>
                        
-                        <div class="text-center mb-2"><a href="home.php" data-bs-toggle="modal"
+                        <div class="text-center mb-2"><a href="http://localhost/TatvaSoft/Views/forgot.php" data-bs-toggle="modal"
                             data-bs-target="#Modalform" data-bs-dismiss="modal" title="Login Now">Login now</a>
                         </div>
                     </form>
@@ -110,10 +124,11 @@
 
    			
 
-		<div class="container  main-container">
-			<div class="container-fluid  banner">
-				
-				<nav class=" nav_row  " id="navbar" >
+<div class="">
+			<div class="container-fluid banner">
+						
+			
+				<!-- <nav class=" nav_row  " id="navbar" >
 					
 					<div class="logo1"><img src="../assets/image/logo-large.png" style=" width: 120px; height: 75px;"></div>
 					
@@ -132,9 +147,9 @@
 							
 						</ul>
 					</div>
-				</nav>
+				</nav> -->
 				
-				<div class="container-fluid container1">
+				<div class="container-fluid ">
 					<div class="">
 						<div class="">
 							<h1>Do not feel like housework?</h1>
@@ -147,9 +162,9 @@
 							</p>
 						</div>
 					</div>
-					<div class="row" style=" margin-left: 100px; margin-top: 125px;">
+					<div class="row22" style=" ">
 						
-						<a class="btn book_btn" href="http://localhost/TatvaSoft/Views/booknow.php">Book a Helper</a>
+						<a class="bookbtn" href="http://localhost/TatvaSoft/Views/booknow.php">Book a Helper</a>
 						
 						
 					</div>
@@ -185,8 +200,8 @@
 					    </div>
 				    </div>
 			
+				</div>
 			</div>
-		</div>
 
 
 		
@@ -346,6 +361,9 @@
         <script src="https://www.markuptag.com/bootstrap/5/js/bootstrap.bundle.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js" integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js" integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13" crossorigin="anonymous"></script>	
-	
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.4/dist/sweetalert2.all.min.js"></script>
+<script  src="../assets/js/customer.js"></script>
+<script  src="../assets/js/common.js"></script>
 </body>
 </html>
