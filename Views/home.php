@@ -49,8 +49,8 @@
          <!-- <link rel="stylesheet" href="https://www.markuptag.com/bootstrap/5/css/bootstrap.min.css" /> -->
 		 <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 		  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
-		  <link href="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.4/dist/sweetalert2.min.css" rel="stylesheet"> 
- 
+		  <!-- <link href="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.4/dist/sweetalert2.min.css" rel="stylesheet">  -->
+		  <link href="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.4/dist/sweetalert2.min.css" rel="stylesheet">
 		 <link rel="stylesheet" href="http://localhost/TatvaSoft/assets/css/home1.css">
 	</head>
 	<body>
@@ -84,7 +84,7 @@
                                 Remember Me
                             </label>
                         </div>
-                        <button type="submit" class="btn-login"  name="login"> Login</button>
+                        <button type="submit" class="btn-login"   name="login"> Login</button>
                          <div class="text-center mb-2"><a href="#" data-bs-toggle="modal"
                             data-bs-target="#fogotmodal" data-bs-dismiss="modal" title="Forgot Password">Forgot Password?</a></div>
                         <div class="text-center" style="color: black;">Don't have an account? <a href="http://localhost/TatvaSoft/Views/CustomerSignup.php">Create an account</a></div>
@@ -363,6 +363,8 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js" integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13" crossorigin="anonymous"></script>	
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.4/dist/sweetalert2.all.min.js"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+<!-- <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.4/dist/sweetalert2.all.min.js"></script> -->
 <script  src="../assets/js/customer.js"></script>
 <script  src="../assets/js/common.js"></script>
 </body>

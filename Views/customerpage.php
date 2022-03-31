@@ -15,7 +15,7 @@
   <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css'>
   <link href="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.4/dist/sweetalert2.min.css" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/rateYo/2.3.2/jquery.rateyo.min.css">
-
+  <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.css">
 
   <?php
     if(!isset($_SESSION))
@@ -386,9 +386,9 @@
             
                     <!-- row data 1 content -->
                         <div class="container-fluid row" id="rightsidebar" style="margin-top:14px;"> 
-                            <div class="col">
+                            <div class="col dboard">
                             
-                                <table id="content-table" class="table">
+                                <!-- <table id="content-table" class="table">
                                     <thead>
                                         <tr>
                                             <th>Service Id </th>
@@ -399,7 +399,7 @@
                                         </tr>
                                     </thead>
                                     
-                                    <tbody class="dboard">
+                                    <tbody class=""> -->
                                         
                                         <!-- <tr class="t-row">
                                             <td>2323</td>
@@ -426,23 +426,23 @@
                                             </td>
                                         </tr>  -->
                                         
-                                    </tbody>
+                                    <!-- </tbody>
                                     
-                                </table>
+                                </table> -->
                             </div>
                         </div> 
                     <!-- end one data content -->
             </div>
             <div class="tab-pane fade" id="v-pills-history" role="tabpanel" aria-labelledby="v-pills-history-tab">
-
+    
                 <div class="container-fluid row">
                             <div class="go"><h3 class="serhist"> Service History</h3>
                             <div class="btnaddnew"><button class="btn ml-auto addnew">Export</button></div>
                             </div>
                 </div>
                         <div class="container-fluid row" id="rightsidebar"> 
-                            <div class="col" data-bs-toggle="modal" data-bs-target="#ratesp_modal" >
-                                <table id="content-table" class="table">
+                            <div class="col history" data-bs-toggle="modal" data-bs-target="#ratesp_modal" >
+                                <!-- <table id="content-table" class="table">
                                     <thead>
                                         <tr>
                                             <th>ServiceId</th>
@@ -453,8 +453,8 @@
                                             <th>Rate SP</th>
                                         </tr>
                                     </thead>
-                                    <tbody class="history">
-                                        
+                                    <tbody class="">  -->
+                                         
                                         <!-- <tr class="t-row">
                                             <td><p>2323</p></td>
                                             <td>
@@ -607,7 +607,7 @@
         </div>
 </div>
 
-<div class="last">
+<!-- <div class="last">
 		
 			<div class="show1">Show 
 											<select class="fi">
@@ -633,7 +633,7 @@
 					<li> <a href="#"><img src="../assets/image/firstpageright.png"></a></li>
 				</nav>
 			</div>
-</div>
+</div> -->
 
 <!-- footer -->
 <div class="footer" style="">
@@ -670,14 +670,15 @@
 <!-- footer end -->
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.4/dist/sweetalert2.all.min.js"></script>
+<!-- <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.4/dist/sweetalert2.all.min.js"></script> -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<!-- <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> -->
 <script  src="../assets/js/customer.js"></script>
 <script  src="../assets/js/common.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.4/dist/sweetalert2.all.min.js"></script>
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-
+    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/rateYo/2.3.2/jquery.rateyo.min.js"></script>
 </body>
 </html>

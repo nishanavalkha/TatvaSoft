@@ -48,8 +48,11 @@ class Helperland
         $Mobile=$array['Mobile'];
         $Password =$array['Password'];
         $usertypeid =$array['usertypeid'];
+        $IsApproved = $array['IsApproved'];
+        $IsActive = $array['IsActive'];
+        $CreatedDate =$array['CreatedDate'];
 
-        $query = "INSERT INTO $table(FirstName,LastName,Email,Mobile,Password,UserTypeId) VALUES('$FName','$LName','$Email','$Mobile','$Password','$usertypeid')";
+        $query = "INSERT INTO $table(FirstName,LastName,Email,Mobile,Password,UserTypeId,IsApproved,IsActive) VALUES('$FName','$LName','$Email','$Mobile','$Password','$usertypeid','$UserTypeId','$IsApproved','$IsActive')";
         if($this->conn->query($query)==TRUE){
 
           echo " new record inserted";
@@ -459,6 +462,208 @@ class Helperland
         $result= mysqli_query($this->conn,$query);
        return $result;
     }
-    
+    function UserAddress($userid)
+    {
+      $query = "SELECT * FROM useraddress WHERE UserId ='$userid' AND IsDeleted=0 ";
+      $result = mysqli_query($this->conn,$query);
+      $row = mysqli_fetch_assoc($result);
+      return $row ;
+    }
+    public function update_sp_details($table, $userid, $array)
+    {
+      $spfname =$array['spfname'];
+      $splname =$array['splname'];
+      $spmobile =$array['spmobile'];
+      $spdob =$array['spdob'];
+      $spnationality =$array['spnationality'];
+      $splanguage = $array['splanguage'];
+      $spgender = $array['spgender'];
+      $selectedavatar = $array['selectedavatar'];
+
+        $query = "UPDATE $table
+                    SET FirstName = '$spfname', LastName = '$splname' , Mobile = '$spmobile', DateOfBirth = '$spdob', LanguageId = '$splanguage', NationalityId = '$spnationality', Gender = '$spgender', UserProfilePicture = '$selectedavatar'
+                    WHERE UserId = $userid";
+        $result= mysqli_query($this->conn,$query);
+        return $result;
+    }      
+
+    function insert_update_spaddress($table, $array2, $edit)
+    {
+        if($edit == 0)
+        {
+          $UserId = $array2['UserId'];
+          $AddressLine1 =$array2['AddressLine1'];
+          $AddressLine2 =$array2['AddressLine2'];
+          $City =$array2['City'];
+          $PostalCode =$array2['PostalCode'];
+          $phonenumber =$array2['Mobile'];
+          $Email = $array2['Email'];
+
+            $query = "INSERT INTO $table (UserId, AddressLine1, AddressLine2, City, PostalCode, Mobile, Email)
+                        VALUES ('$UserId', '$AddressLine1', '$AddressLine2', '$City', '$PostalCode', '$Mobile', '$Email')";
+            $result= mysqli_query($this->conn,$query);
+            return $result;
+        }
+        else
+        {
+          $AddressLine1 =$array2['AddressLine1'];
+          $AddressLine2 =$array2['AddressLine2'];
+          $City =$array2['City'];
+          $PostalCode =$array2['PostalCode'];
+          $AddressId =$array2['AddressId'];
+            $query = "UPDATE $table
+                        SET AddressLine1 = '$AddressLine1', AddressLine2 = '$AddressLine2' , City = '$City', PostalCode = '$PostalCode'
+                        WHERE AddressId = '$AddressId'";
+            $result= mysqli_query($this->conn,$query);
+            return $result;
+        }
+    }
+
+    function getallservicerequest()
+    {
+      $query = "SELECT * FROM servicerequest";
+      $result= mysqli_query($this->conn,$query);
+      return $result;
+    }
+
+    function usermanagement()
+    {
+        $query = "SELECT * FROM  user WHERE NOT UserTypeId=3";
+        $result = mysqli_query($this->conn,$query);
+        $row= $result -> fetch_all(MYSQLI_ASSOC);
+        return $row;
+    }
+
+    function activeuser($id)
+    {
+        $query = "UPDATE user SET IsActive =1 WHERE  UserId = '$id'";
+        $result= mysqli_query($this->conn,$query);
+        return $result;
+    }
+
+    function deactiveuser($id)
+    {
+      $query = "UPDATE user SET IsActive =0 WHERE  UserId = '$id'";
+      $result= mysqli_query($this->conn,$query);
+      return $result;
+    }
+    function approveuser($id)
+    {
+      $query = "UPDATE user SET IsActive =1 , IsApproved=1 WHERE  UserId = '$id'";
+      $result= mysqli_query($this->conn,$query);
+      return $result;
+    }
+    function cancelfromadmin($reqid)
+    {
+      $query = "UPDATE servicerequest SET Status =3 WHERE  ServiceRequestId = '$reqid'";
+      $result= mysqli_query($this->conn,$query);
+      return $result; 
+    }
+
+    public function get_filter_option($typeid1,$typeid2)
+    {
+        if ($typeid2 != null) {
+            $query = "SELECT `FirstName`,`LastName` FROM `user` WHERE `UserTypeId` IN ($typeid1,$typeid2)";
+        } else {
+            $query = "SELECT `FirstName`,`LastName` FROM `user` WHERE `UserTypeId` IN ($typeid1)";
+        }
+        $result = mysqli_query($this->conn,$query);
+        $row= $result -> fetch_all(MYSQLI_ASSOC);
+        return $row;
+    }
+
+    public function userfilter($array)
+    {
+        $FirstName=$array['FirstName'];
+        $LastName=$array['LastName'];
+        $UserTypeId=$array['UserTypeId'];
+        // $Mobile=$array['Mobile'];
+        $ZipCode=$array['ZipCode'];
+        $fromdate=$array['fromdate'];
+        $todate=$array['todate'];
+
+        $sql_qry = "SELECT * FROM user WHERE UserTypeId <>3 ";
+
+        if($FirstName!="")
+        {
+            $sql_qry = $sql_qry."AND FirstName = '$FirstName' AND LastName ='$LastName' ";
+        }
+        if($UserTypeId!="")
+        {
+            $sql_qry =$sql_qry."AND UserTypeId='$UserTypeId' ";
+        }
+        // if($Mobile!="")
+        // {
+        //     $sql_qry =$sql_qry."AND Mobile='$Mobile' ";
+        // }
+        if($ZipCode!="")
+        {
+            $sql_qry =$sql_qry."AND ZipCode='$ZipCode' ";
+        }
+        if($fromdate!="")
+        {
+            $sql_qry =$sql_qry." AND  CreatedDate >= '$fromdate' ";
+        }
+        if($todate!="")
+        {
+            $sql_qry =$sql_qry." AND  CreatedDate <= '$todate' ";
+        }
+        $result = mysqli_query($this->conn,$sql_qry);
+        $row= $result -> fetch_all(MYSQLI_ASSOC);
+        return $row;
+    }
+    public function requestfilter($array)
+    {
+        $ServiceRequestId=$array['ServiceRequestId'];
+        $ZipCode=$array['ZipCode'];
+        $Customer=$array['Customer'];
+        $SP=$array['SP'];
+        $Status=$array['Status'];
+        $fromdate=$array['fromdate'];
+        $todate=$array['todate'];
+
+
+        $sql_qry="SELECT * FROM servicerequest 
+                  WHERE servicerequest.ServiceRequestId > 0  ";
+        if($SP!='')
+        {
+            $sql_qry = $sql_qry." AND servicerequest.ServiceProviderId = (SELECT UserId from user WHERE CONCAT(FirstName,' ',LastName) = '$SP') ";
+        }
+        if($Customer!='')
+        {
+            $sql_qry = $sql_qry." AND servicerequest.UserId = (SELECT UserId from user WHERE CONCAT(FirstName,' ',LastName) = '$Customer') ";
+        }
+        if($ZipCode!='')
+        {
+            $sql_qry = $sql_qry." AND servicerequest.ZipCode='$ZipCode'  ";
+        }
+        if($Status!='')
+        {
+            $sql_qry = $sql_qry." AND servicerequest.Status='$Status' ";
+        }
+        if($fromdate!='')
+        {
+            $sql_qry = $sql_qry." AND servicerequest.ServiceStartDate >= '$fromdate'  ";
+        }
+        if($todate!='')
+        {
+            $sql_qry = $sql_qry." AND servicerequest.ServiceStartDate <= '$todate' ";
+        }
+        if($ServiceRequestId!='')
+        {
+            $sql_qry = $sql_qry."  AND servicerequest.ServiceRequestId='$ServiceRequestId'   ";
+        }
+        $result = mysqli_query($this->conn,$sql_qry);
+        $row= $result -> fetch_all(MYSQLI_ASSOC);
+        return $row;
+
+    }
+    function users()
+    {
+        $query = "SELECT UserId, CONCAT(FirstName, ' ',LastName) AS User,Email,Mobile,UserTypeId,Gender,DateOfBirth,ZipCode,CreatedDate,IsApproved,IsActive,IsDeleted FROM user WHERE NOT UserTypeId=0 ";
+        $result = mysqli_query($this->conn,$query);
+        $row= $result -> fetch_all(MYSQLI_ASSOC);
+        return $row;
+    }
 }
 ?>

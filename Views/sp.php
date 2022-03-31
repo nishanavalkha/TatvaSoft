@@ -25,6 +25,7 @@
   <link href="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.4/dist/sweetalert2.min.css" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/rateYo/2.3.2/jquery.rateyo.min.css">
   <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+  <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.css">
 
   <?php
     if(!isset($_SESSION))
@@ -188,14 +189,14 @@
 <div class="d-flex align-items-start">
         <div class="nav flex-column nav-pills navbar-content leftsidebar" id="v-pills-tab" role="tablist" aria-orientation="vertical">
                 <!-- <a class="nav-link active" id="v-pills-dashboard-tab" data-bs-toggle="pill" data-bs-target="#v-pills-dashboard" type="button" role="tab" aria-controls="v-pills-dashboard" aria-selected="true">Dashboard</button> -->
-                <a class="nav-link" id="v-pills-newservice-tab" data-bs-toggle="pill" data-bs-target="#v-pills-newservice" type="button" role="tab" aria-controls="v-pills-newservice" aria-selected="false">New Service Requests</button> 
-                <a class="nav-link" id="v-pills-upcomingservice-tab" data-bs-toggle="pill" data-bs-target="#v-pills-upcomingservice" type="button" role="tab" aria-controls="v-pills-upcomingservice" aria-selected="false">Upcoming Services</button> 
-                <a class="nav-link" id="v-pills-schedule-tab" data-bs-toggle="pill" data-bs-target="#v-pills-schedule" type="button" role="tab" aria-controls="v-pills-schedule" aria-selected="false">Service Schedule</button>
-                <a class="nav-link"  id="v-pills-history-tab" data-bs-toggle="pill" data-bs-target="#v-pills-history" type="button" role="tab" aria-controls="v-pills-history" aria-selected="false">Service History</button>
-                <a class="nav-link" id="v-pills-myrating-tab" data-bs-toggle="pill" data-bs-target="#v-pills-myrating" type="button" role="tab" aria-controls="v-pills-myrating" aria-selected="false">My Ratings</button> 
-                <a class="nav-link" id="v-pills-block-tab" data-bs-toggle="pill" data-bs-target="#v-pills-block" type="button" role="tab" aria-controls="v-pills-block" aria-selected="false">Block Customer</button>
-                <a class="nav-link" id="v-pills-invoices-tab" data-bs-toggle="pill" data-bs-target="#v-pills-invoices" type="button" role="tab" aria-controls="v-pills-invoices" aria-selected="false">Invoices</button>
-                <a class="nav-link" id="v-pills-notification-tab" data-bs-toggle="pill" href="#" type="button" role="tab" aria-controls="v-pills-notification" aria-selected="false">Notification</button>
+                <a class="nav-link" id="v-pills-newservice-tab" data-bs-toggle="pill" data-bs-target="#v-pills-newservice" type="button" role="tab" aria-controls="v-pills-newservice" aria-selected="false">New Service Requests</a> 
+                <a class="nav-link" id="v-pills-upcomingservice-tab" data-bs-toggle="pill" data-bs-target="#v-pills-upcomingservice" type="button" role="tab" aria-controls="v-pills-upcomingservice" aria-selected="false">Upcoming Services</a> 
+                <a class="nav-link" id="v-pills-schedule-tab" data-bs-toggle="pill" data-bs-target="#v-pills-schedule" type="button" role="tab" aria-controls="v-pills-schedule" aria-selected="false">Service Schedule</a>
+                <a class="nav-link"  id="v-pills-history-tab" data-bs-toggle="pill" data-bs-target="#v-pills-history" type="button" role="tab" aria-controls="v-pills-history" aria-selected="false">Service History</a>
+                <a class="nav-link" id="v-pills-myrating-tab" data-bs-toggle="pill" data-bs-target="#v-pills-myrating" type="button" role="tab" aria-controls="v-pills-myrating" aria-selected="false">My Ratings</a> 
+                <a class="nav-link" id="v-pills-block-tab" data-bs-toggle="pill" data-bs-target="#v-pills-block" type="button" role="tab" aria-controls="v-pills-block" aria-selected="false">Block Customer</a>
+                <a class="nav-link" id="v-pills-invoices-tab" data-bs-toggle="pill" data-bs-target="#v-pills-invoices" type="button" role="tab" aria-controls="v-pills-invoices" aria-selected="false">Invoices</a>
+                <a class="nav-link" id="v-pills-notification-tab" data-bs-toggle="pill" href="#" type="button" role="tab" aria-controls="v-pills-notification" aria-selected="false">Notification</a>
         </div>
         
         <div class="tab-content" id="v-pills-tabContent" >
@@ -217,8 +218,8 @@
                             </div>
                 </div>
                         <div class="container-fluid row db"> 
-                            <div class="col">
-                                <table  class="table">
+                            <div class="col newrequest">
+                                <!-- <table  class="table">
                                     <thead>
                                         <tr>
                                             <th>Service Id </th>
@@ -229,7 +230,7 @@
                                             <th>Action</th>
                                         </tr>
                                     </thead>
-                                    <tbody class="newrequest">
+                                    <tbody class=""> -->
                                         <!-- 1st row start-->
                                         <!-- <tr class="t-row" data-toggle="modal" data-target="#servicedetailmodal">
                                         <input type="checkbox" class="checkbox pet" style="margin-left:10px;">
@@ -248,8 +249,8 @@
                                             <td><p></p></td>
                                             <td><button  class="btn accept-btn">Accept</button></td>
                                         </tr>  -->
-                                    </tbody>
-                                </table>
+                                    <!-- </tbody>
+                                </table> -->
                             </div>
                         </div>
             </div>
@@ -257,8 +258,8 @@
             <div class="tab-pane fade" id="v-pills-upcomingservice" role="tabpanel" aria-labelledby="v-pills-upcomingservice-tab">
 
                         <div class="container-fluid row" id="rightsidebar"> 
-                            <div class="col" >
-                                <table id="content-table" class="table">
+                            <div class="col upcoming" >
+                                <!-- <table id="content-table" class="table">
                                     <thead>
                                         <tr>
                                             <th>ServiceId</th>
@@ -269,7 +270,7 @@
                                             <th>Action</th>
                                         </tr>
                                     </thead>
-                                    <tbody class="upcoming">
+                                    <tbody class=""> -->
                                         <!--1st row start-->
                                         <!-- <tr class="t-row" data-toggle="modal" data-target="#servicedetailmodal">
                                        
@@ -288,8 +289,8 @@
                                             <td><p>123456</p></td>
                                             <td><button  class="btn accept-btn">Accept</button></td>
                                         </tr>   -->
-                                    </tbody>
-                                </table>
+                                    <!-- </tbody>
+                                </table> -->
                             </div>
                         </div>
 
@@ -309,8 +310,8 @@
                             
                 </div>
                         <div class="container-fluid row" id="rightsidebar"> 
-                            <div class="col" >
-                                <table id="content-table" class="table">
+                            <div class="col sphistory" >
+                                <!-- <table id="content-table" class="table">
                                     <thead>
                                         <tr>
                                             <th>Service Id </th>
@@ -318,7 +319,7 @@
                                             <th >Customer Details </th>
                                         </tr>
                                     </thead>
-                                    <tbody class="sphistory">
+                                    <tbody class=""> -->
                                          <!--1st row start-->
                                         <!-- <tr class="t-row">
                                             <td>2323</td>
@@ -331,8 +332,8 @@
                                                 <div><img src="../assets/image/layer-719.png"> Musterstrabe 5,12345 Bonn</div> 
                                             </td>
                                         </tr>   -->
-                                    </tbody>
-                                </table>
+                                    <!-- </tbody>
+                                </table> -->
                             </div>
                         </div>
             </div>
@@ -422,7 +423,7 @@
                             <div class="button-body">
                                 <div class="details-body">
                                     <div class="sp-details-body">
-                                        <div class="d-flex align-items-center pb-2">
+                                        <!-- <div class="d-flex align-items-center pb-2">
                                             <div><b>Account Status:</b></div>
                                             <div class="ps-2 active">Active</div>
                                         </div>
@@ -540,7 +541,7 @@
                                         </div>
                                         <div>
                                             <button type="submit" class="sp-details-save">Save</button>
-                                        </div> 
+                                        </div>  -->
                                     </div>
                                 </div>
                                 <div class="password-body">
@@ -570,7 +571,7 @@
         </div>
 </div>
 <!-- total nd -->
-<div class="last">
+<!-- <div class="last">
 		
 			<div class="show1">Show 
 											<select class="fi">
@@ -596,7 +597,7 @@
 					<li> <a href="#"><img src="../assets/image/firstpageright.png"></a></li>
 				</nav>
 			</div>
-</div>
+</div> -->
 
 <!-- footer -->
 <div class="footer" style="">
@@ -643,7 +644,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.4/dist/sweetalert2.all.min.js"></script>
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-
+    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/rateYo/2.3.2/jquery.rateyo.min.js"></script>
 </body>
 </html>

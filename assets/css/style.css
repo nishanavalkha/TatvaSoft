@@ -1,0 +1,14 @@
+.form-select {
+    width: 170px;
+    height: 47px;
+    color: grey;
+}
+
+.form-select:hover {
+    color: #1FB6FF;
+}
+
+
+/* .p1 {
+    margin: 10px 3px 5px 20px;
+} */

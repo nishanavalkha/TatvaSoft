@@ -13,6 +13,26 @@ $(document).ready(function() {
             success: function(response) {
                 $(".dboard").html(response);
 
+                $('#dashbo').DataTable({
+                    paging: true,
+                    "pagingType": "full_numbers",
+                    // bFilter: false,
+                    ordering: true,
+                    searching: false,
+                    info: false,
+                    // "columnDefs": [
+                    //     { "orderable": false, "targets": 1 },
+                    //     { "orderable": false, "targets": 2 },
+                    //     { "orderable": false, "targets": 4 },
+                    //     { "orderable": false, "targets": 7 }
+                    // ],
+                    // "oLanguage": {
+                    //     "sInfo": "Total Records: TOTAL"
+                    // },
+                    "dom": '<"top">rt<"bottom"lip><"clear">',
+                    responsive: true,
+                    "order": []
+                });
                 $(".reschedule").click(function(e) {
                     e.stopPropagation();
                     reqIdforreschedule = this.id;
@@ -165,9 +185,9 @@ $(document).ready(function() {
 
                 $(".history").html(response);
                 // $(".history tr .td").click(function(e) {
-
-
                 // });
+
+                // $("#histo").DataTable();
 
                 $(".rateyo").rateYo({
                     starWidth: "16px",
@@ -175,7 +195,31 @@ $(document).ready(function() {
                     readOnly: true,
                 });
 
+                $('#histo').DataTable({
+                    paging: true,
+                    "pagingType": "full_numbers",
+                    // bFilter: false,
+                    ordering: true,
+                    searching: false,
+                    info: false,
+                    // "columnDefs": [
+                    //     { "orderable": false, "targets": 1 },
+                    //     { "orderable": false, "targets": 2 },
+                    //     { "orderable": false, "targets": 4 },
+                    //     { "orderable": false, "targets": 7 }
+                    // ],
+                    // "oLanguage": {
+                    //     "sInfo": "Total Records: TOTAL"
+                    // },
+                    "dom": '<"top">rt<"bottom"lip><"clear">',
+                    responsive: true,
+                    "order": []
+                })
+
                 $(".rate-sp").click(function(e) {
+                    e.stopPropagation();
+                    // alert("hiii");
+
                     reqIdforreschedule = this.id;
                     // alert(reqIdforreschedule);
                     $.ajax({
@@ -188,13 +232,14 @@ $(document).ready(function() {
                         success: function(response) {
 
                             $(".ratesp").html(response);
+
                             var ontimearrival = 0;
                             var friendly = 0;
                             var quality = 0;
-                            $(".rateyo").rateYo({
+                            $(".rateyo1").rateYo({
                                 starWidth: "16px",
                                 ratedFill: "#FFD600",
-                                readOnly: false,
+                                readOnly: true,
                             });
 
                             $(".ontime-arrival").rateYo({ starWidth: "18px", ratedFill: "#FFD600" }).on("rateyo.change", function(e, data) {

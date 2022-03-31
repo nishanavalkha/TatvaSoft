@@ -566,6 +566,12 @@
     padding: 10px 10px;
 }
 
+.btn-check:focus+.btn,
+.btn:focus {
+    outline: 0;
+    box-shadow: 0 0 0 0 !important;
+}
+
 .sp-details-body .choose-avatar .avatar-image img {
     width: 85px;
     height: 85px;

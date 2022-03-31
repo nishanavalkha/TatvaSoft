@@ -1,46 +1,20 @@
-<div class="container-fluid row" id="rightsidebar" style="margin-top:14px;"> 
-                            <div class="col">
-                            
-                                <table id="content-table" class="table">
-                                    <thead>
-                                        <tr>
-                                            <th>Service Id </th>
-                                            <th >Service Date </th>
-                                            <th >Sevice Provider </th>
-                                            <th class="" style="padding-left:10px;">Payment</th>
-                                            <th class="" style="padding-left:50px;">Action</th>
-                                        </tr>
-                                    </thead>
-                                    
-                                    <tbody class="dboard">
-                                        
-                                        <tr class="t-row">
-                                            <td>2323</td>
-                                            <td>
-                                                <p class="date"><img src="../assets/image/calendar.png"> 31/03/2018</p>
-                                                <p>12:00 - 18:00</p>
-                                            </td>
-                                            <td> 
-                                                <div class="a flex-wrap row">
-                                                    <div class="ro"><img src="../assets/image/forma-1-copy-19.png"></div>
-                                                   <div>
-                                                        <p class="lum-watson">Lyum Watson</p>
-                                                        <div class="rateyo" id= "rating"  data-rateyo-rating="3" > </div>
-                                                    </div>
-                                                </div>
-                                            </td>
-                                            <td>
-                                                <p class="">&euro; 63</p>
-                                            </td>
-                                            
-                                            <td>
-                                            <button  class="reschedule" >Reschedule</button>
-                                            <button  class="cancel" >Cancel</button>
-                                            </td>
-                                        </tr>  
-                                        
-                                    </tbody>
-                                    
-                                </table>
-                            </div>
-                        </div> 
+<!DOCTYPE html>
+<html>
+    <head>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="../assets/css/style.css">
+</head>
+<body>
+
+
+<div class="form-row p1">
+
+<select class="form-select form-select-lg-md-4 form-control" aria-label=".form-select-lg example">
+  <option selected> select menu</option>
+  <option value="1">One</option>
+  <option value="2">Two</option>
+  <option value="3">Three</option>
+</select>
+</div>
+</body>
+</html>

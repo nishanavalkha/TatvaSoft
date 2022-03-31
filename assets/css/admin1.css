@@ -1,0 +1,558 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,900;1,700&display=swap");
+* {
+    margin: 0;
+    font-family: 'roboto' sans-serif;
+}
+
+body {
+    overflow-x: hidden;
+}
+
+
+/*for modal*/
+
+.col-lg-6 .option {
+    margin-top: 30px;
+    width: 187px;
+    height: 35px;
+    text-decoration: none;
+    border-collapse: collapse;
+    border: 1px solid #dedddd;
+    box-sizing: border-box;
+    color: #a0a0a0;
+    border-radius: 6px;
+    font-size: 16px;
+}
+
+
+/*header*/
+
+.section-1 {
+    display: block;
+}
+
+.navbar {
+    background-color: #1FB6FF;
+    height: 60px;
+}
+
+.section-1 .navbar .navbar-brand {
+    color: white;
+    margin-top: 6px;
+    margin-left: 8px;
+    /* font-family: 'roboto'; */
+    font-size: 34px;
+    font-weight: bold;
+}
+
+.section-1 nav div ul a span {
+    padding-left: 10px;
+}
+
+.navbar-collapse ul a {
+    font-size: 20px;
+}
+
+
+/* .section-1-1 {
+    display: none;
+} */
+
+.navbar-collapse {
+    text-align: right;
+    margin-left: 74%;
+}
+
+
+/*  */
+
+.navbar-content {
+    margin-top: 14px;
+    width: 273px;
+    height: 150vh;
+    float: left;
+    margin-right: 25px;
+    background-color: #FFFFFF;
+    box-shadow: 2px 0px 6px #0000001A;
+    /* background-color: aliceblue */
+}
+
+.navbar-content .nav-link {
+    color: grey;
+    font-size: 19px;
+    font-weight: normal;
+    text-decoration: none;
+    list-style: none;
+    border-bottom: 2px sold grey;
+}
+
+.navbar-content a:hover {
+    color: #1FB6FF;
+}
+
+#v-pills-tab a {
+    border-bottom: 1px solid rgb(92, 88, 88);
+    line-height: 2.0;
+}
+
+.tab-content {
+    position: relative;
+    margin-left: 15px;
+    margin-right: 25px;
+}
+
+.main-type {
+    background-color: #a0a0a02b;
+}
+
+.main-type .blocks {
+    margin: 20px;
+}
+
+.main-type .tab-pane .blocks h2 {
+    float: left;
+    padding-top: 5px;
+    color: grey;
+    font-size: 34px;
+    font-weight: bold;
+}
+
+.main-type .tab-pane .blocks .blocks1 {
+    display: flex;
+}
+
+.adduser {
+    padding-top: 10px;
+    /* width: 350px;
+    height: 30px; */
+}
+
+.adduser .adduserbtn {
+    margin-left: 516px;
+}
+
+.blocks {
+    margin-left: 0;
+    margin-right: 0;
+    margin-top: 15px;
+}
+
+.main-type .blocks .adduser .plus {
+    font-size: 14px;
+    width: 16px;
+    height: 16px;
+    margin-right: 5px;
+}
+
+.main-type .blocks .adduser .adduserbtn {
+    background-color: #1FB6FF;
+    color: #FFFFFF;
+    border-radius: 4px;
+    font-size: 14px;
+}
+
+.haspet {
+    padding: 5px 0;
+    margin-left: 25px;
+    color: #4F4F4F;
+}
+
+.p1 {
+    width: 100%;
+    padding-top: 15px;
+}
+
+.filter {
+    width: 1100px;
+    margin-left: -20px;
+    align-items: center;
+    margin-top: 25px;
+    background-color: #fff;
+    border: 1px solid #6464644a;
+}
+
+.tab-pane .filter .p1 .serviceid {
+    width: 120px;
+    height: 40px;
+    color: grey;
+    margin-left: 4px;
+}
+
+.tab-pane .filter .p1 .postalcode {
+    width: 120px;
+    height: 40px;
+    color: grey;
+}
+
+.tab-pane .filter .p1 .email {
+    width: 130px;
+    height: 40px;
+    color: grey;
+}
+
+.selcust {
+    width: 120px;
+    height: 40px;
+    color: grey;
+}
+
+.tab-pane .filter .p1 .sp {
+    width: 120px;
+    height: 40px;
+    color: grey;
+}
+
+.tab-pane .filter .p1 .status {
+    width: 120px;
+    height: 40px;
+    color: grey;
+}
+
+.tab-pane .filter .p1 .sppaymentstatus {
+    width: 120px;
+    height: 40px;
+    color: grey;
+}
+
+.tab-pane .filter .p1 .statuspay {
+    width: 120px;
+    height: 40px;
+    color: grey;
+}
+
+.tab-pane .filter .p1 .sppaymentstatus:hover {
+    color: #1FB6FF;
+}
+
+.tab-pane .filter .p1 .statuspay:hover {
+    color: #1FB6FF;
+}
+
+.tab-pane .filter .p1 .sp:hover {
+    color: #1FB6FF;
+}
+
+.tab-pane .filter .p1 .status:hover {
+    color: #1FB6FF;
+}
+
+.tab-pane .filter .p1 .selcust:hover {
+    color: #1FB6FF;
+}
+
+.tab-pane .filter .p1 .form-select {
+    margin: 4px 5px 5px 7px;
+}
+
+.tab-pane .filter .p1 .form-group {
+    margin: 4px 5px 5px 7px;
+}
+
+.tab-pane .filter .p2 {
+    display: flex;
+}
+
+.tab-pane .filter .p2 .pet {
+    width: 18px;
+    height: 17px;
+    margin-top: 8px;
+}
+
+.tab-pane .filter .p2 .checkbox-text {
+    color: grey;
+    font-weight: bolder;
+    margin-top: 8px;
+}
+
+.tab-pane .filter .p2 .fromdate {
+    width: 160px;
+    height: 40px;
+    color: grey;
+    margin: 8px 0 17px 13px;
+}
+
+.tab-pane .filter .p2 .todate {
+    width: 160px;
+    height: 40px;
+    color: grey;
+    margin: 8px 0 17px 13px;
+}
+
+.tab-pane .filter .p2 .btn-search {
+    width: 80px;
+    height: 40px;
+    color: white;
+    background-color: #1FB6FF;
+    margin: 8px 0 17px 13px;
+}
+
+.tab-pane .filter .p2 .btn-reset {
+    width: 80px;
+    height: 40px;
+    color: grey;
+    margin: 8px 0 17px 13px;
+    border: 1px solid #6464644a;
+    border-radius: 6px;
+}
+
+.tab-pane .filter .p2 .btn-search:hover {
+    background-color: #0c7cb4;
+    color: black;
+}
+
+.tab-pane .filter .p2 .btn-reset:hover {
+    background-color: #0c7cb4;
+    color: black;
+}
+
+.tab-pane .table_usermanagement {
+    border: 1px solid gray;
+    margin-top: 30px;
+    box-shadow: 2px 0px 6px #201f1f1a;
+    background-color: white;
+}
+
+.tab-content .tab-pane .table_usermanagement .table thead {
+    background-color: rgb(238, 229, 229);
+    color: grey;
+}
+
+.tab-content .tab-pane .table_usermanagement .table tbody tr td .btn-pending {
+    width: 84px;
+    height: 36px;
+    background-color: rgba(224, 137, 22, 0.842);
+    color: white;
+}
+
+.tab-content .tab-pane .table_usermanagement .table tbody tr td .btn-pending:hover {
+    background-color: rgb(255, 0, 0);
+    color: black;
+}
+
+.tab-content .tab-pane .table_usermanagement .table tbody tr td .btn-active {
+    width: 100px;
+    height: 36px;
+    background-color: #dd4646e8;
+    color: white;
+}
+
+.tab-content .tab-pane .table_usermanagement .table tbody tr td .btn-active:hover {
+    background-color: #f30c0ce8;
+    color: rgb(17, 16, 16);
+}
+
+.tab-content .tab-pane .table_usermanagement .table tbody tr td .btn-complete {
+    width: 100px;
+    height: 36px;
+    background-color: #1FB6FF;
+    color: white;
+}
+
+.tab-content .tab-pane .table_usermanagement .table tbody tr td .btn-notcom {
+    width: 100px;
+    height: 36px;
+    background-color: #1FB6FF;
+    color: white;
+}
+
+.tab-content .tab-pane .table_usermanagement .table tbody tr td .btn-notcom:hover {
+    background-color: #0c5a81;
+    color: black;
+}
+
+.tab-content .tab-pane .table_usermanagement .table tbody tr td .btn-complete:hover {
+    background-color: #0c5a81;
+    color: black;
+}
+
+.tab-content .tab-pane .table_usermanagement .table tbody tr td .btn-cancel {
+    width: 100px;
+    height: 36px;
+    background-color: rgb(226, 40, 40);
+    color: white;
+}
+
+.tab-content .tab-pane .table_usermanagement .table tbody tr td .btn-cancel:hover {
+    width: 100px;
+    height: 36px;
+    background-color: rgb(206, 5, 5);
+    color: black;
+}
+
+.tab-content .tab-pane .table_usermanagement .table tbody tr td .btn-dots {
+    border: 1px solid grey;
+    border-radius: 40px;
+    width: 30px;
+    height: 40px;
+    background-color: #f9f9f9;
+}
+
+.tab-content .tab-pane .table_usermanagement .table tbody tr td .btn-dots:hover {
+    background-color: grey;
+    color: greenyellow;
+}
+
+tr td .btn-inactive {
+    background-color: #FF6B6B;
+    color: #FFFFFF;
+    font-size: 13px;
+    width: 108px;
+    padding-left: 8px;
+}
+
+.userdata tbody td .btn-inactive:hover {
+    background-color: #ee1818;
+    color: black;
+}
+
+.userdata tbody td .btn-approve {
+    /* border-radius: 20px; */
+    width: 108px;
+    font-size: 13px;
+    color: #FFFFFF;
+    background-color: #fca636;
+}
+
+.userdata tbody td .btn-approve:hover {
+    color: black;
+    background-color: #c1c40e;
+}
+
+
+/* user management css */
+
+.tab-pane .filter .r1 .seluser {
+    width: 150px;
+    height: 40px;
+    color: grey;
+}
+
+.tab-pane .filter .r1 .seluser:hover {
+    color: #0c7cb4;
+}
+
+.tab-pane .filter .r1 .usertype {
+    width: 120px;
+    height: 40px;
+    color: grey;
+}
+
+.tab-pane .filter .r1 .usertype:hover {
+    color: #0c7cb4;
+}
+
+
+/* .tab-pane .filter .r1 .mobileuser {
+    width: 150px;
+    height: 40px;
+    color: grey;
+} */
+
+.tab-pane .filter .r1 .postalcode {
+    width: 120px;
+    height: 40px;
+    color: grey;
+}
+
+.tab-pane .filter .r1 .email {
+    width: 120px;
+    height: 40px;
+    color: grey;
+}
+
+.tab-pane .filter .r1 .fromdate {
+    width: 160px;
+    height: 40px;
+    color: grey;
+    /* margin: 8px 0 17px 13px; */
+}
+
+.tab-pane .filter .r1 .todate {
+    width: 160px;
+    height: 40px;
+    color: grey;
+    /* margin: 8px 0 17px 13px; */
+}
+
+.tab-pane .filter .r1 .userformsearch {
+    width: 80px;
+    height: 40px;
+    color: white;
+    background-color: #1FB6FF;
+    margin: 16px 0 17px 13px;
+}
+
+.tab-pane .filter .r1 .userformreset {
+    width: 80px;
+    height: 40px;
+    color: grey;
+    margin: 16px 0 17px 13px;
+    border: 1px solid #6464644a;
+    border-radius: 6px;
+}
+
+.tab-pane .filter .r1 .userformsearch:hover {
+    background-color: #0c7cb4;
+    color: black;
+}
+
+.tab-pane .filter .r1 .userformreset:hover {
+    background-color: #0c7cb4;
+    color: black;
+}
+
+.tab-pane .adding1 {
+    height: 78px;
+}
+
+.tab-pane .filter .r1 .form-select {
+    margin: 16px 5px 5px 7px;
+}
+
+.tab-pane .filter .r1 .form-group {
+    margin: 16px 5px 5px 7px;
+}
+
+.exportbtn {
+    text-align: right;
+}
+
+.tab-pane .exportbtn .export {
+    background-color: #1FB6FF;
+    color: #FFFFFF;
+    border-radius: 4px;
+    font-size: 14px;
+    margin-top: 20px;
+    margin-bottom: -15px;
+}
+
+.tab-pane .exportbtn .export:hover {
+    background-color: #0c7cb4;
+    color: black;
+}
+
+.tab-pane .manage {
+    border: 1px solid gray;
+    margin-top: 30px;
+    box-shadow: 2px 0px 6px #201f1f1a;
+    background-color: white;
+}
+
+.tab-content .tab-pane .manage .userdata thead {
+    background-color: rgb(238, 229, 229);
+    color: grey;
+}
+
+.tab-content .tab-pane .manage .userdata tbody tr td .btn-active1 {
+    width: 100px;
+    height: 36px;
+    background-color: rgb(119, 233, 119);
+    color: white;
+}
+
+.tab-content .tab-pane .manage .userdata tbody tr td .btn-active1:hover {
+    width: 100px;
+    height: 36px;
+    background-color: green;
+    color: black;
+}
