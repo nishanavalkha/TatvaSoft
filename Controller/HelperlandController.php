@@ -39,6 +39,7 @@ class HelperlandController
       {
                 $custpage = "http://localhost/TatvaSoft/Views/customerpage.php";
                 $sppage="http://localhost/TatvaSoft/Views/sp.php"; 
+                $admin ="http://localhost/TatvaSoft/Views/admin.php";
                 if(($_POST['Email'] == "") || ($_POST['Password'] == "")){
                 
                 $base_url ="http://localhost/TatvaSoft/Views/home.php";
@@ -61,7 +62,7 @@ class HelperlandController
               header('Location:' . $custpage);
             }
             else{
-              echo "admin";
+                header('Location:' . $admin);
             }
           }
       }
@@ -117,7 +118,11 @@ class HelperlandController
                   'Email' => $_POST['Email'],
                   'Mobile' =>$_POST['Mobile'],
                   'Password' =>$_POST['Password'],
-                  'usertypeid'=>1,
+                  'usertypeid'=>2,
+                  
+                  'IsApproved' => 0,
+                  'IsActive' => 0,
+                  'CreatedDate' =>date('Y-m-d H:i:s'),
         ];
         $this->model->Signup('user',$array);
         header('Location: ' . $base_url);
@@ -165,7 +170,10 @@ class HelperlandController
                 'Email' => $_POST['Email'],
                 'Mobile' =>$_POST['Mobile'],
                 'Password' =>$_POST['Password'],
-                'usertypeid'=>2,
+                'usertypeid'=>1,
+                'IsApproved' => 0,
+                'IsActive' => 0,
+                'CreatedDate' =>date('Y-m-d H:i:s')
       ];
       $this->model->Signup('user',$array);
       header('Location: ' . $base_url);
@@ -311,6 +319,20 @@ class HelperlandController
       }
     if($list != NULL)
      {
+         ?>
+            <table id="dashbo" class="table">
+                                    <thead>
+                                        <tr>
+                                            <th>Service Id </th>
+                                            <th >Service Date </th>
+                                            <th >Sevice Provider </th>
+                                            <th class="" style="padding-left:10px;">Payment</th>
+                                            <th class="" style="padding-left:50px;">Action</th>
+                                        </tr>
+                                    </thead>
+                                    
+                                    <tbody class="">
+         <?php
        foreach($list as $pending)
       {
         $SP= $this->model->getUserbyId($pending['ServiceProviderId']);
@@ -371,6 +393,11 @@ class HelperlandController
       </tr> 
     <?php
       }
+            ?>
+                </tbody>
+                </table>
+            <?php
+
      }
      else
      {?>
@@ -556,6 +583,21 @@ class HelperlandController
             }
             if($list !=NULL)
             {
+               ?>
+                        <table id="histo" class="table">
+                                    <thead>
+                                        <tr>
+                                            <th>ServiceId</th>
+                                            <th>Service Date </th>
+                                            <th id="sd">Service Provider</th>
+                                            <th id="cd">Payment</th>
+                                            <th >Status</th>
+                                            <th>Rate SP</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody class=""> 
+               <?php
+
                 foreach($list as $history){
                     $SP = $this->model->getUserbyId($history['ServiceProviderId']);
                     $dt=substr($history['ServiceStartDate'],0,10);
@@ -564,7 +606,7 @@ class HelperlandController
                     $totime=DecimalToHoursMins($totalmins);
                     $rates = $this->model->get_ratings_of_sp('rating', $history['ServiceRequestId']);
                 
-                ?>
+                        ?>
                         
                                         <tr class="t-row">
                                             <td><p><?php echo $history['ServiceRequestId']; ?></p></td>
@@ -579,7 +621,8 @@ class HelperlandController
                                                         <p class="lum-watson"><?php echo $SP['FirstName']; ?></p>
                                                     
                                                         <p>
-                                                        <div class="rateyo" id= "rating" data-rateyo-rating ="<?php echo $rates['Ratings']; ?>" ></div> 
+                                                        <div class="rateyo" id= "rating" data-rateyo-rating ="<?php echo intval($rates['Ratings']); ?>" ></div> 
+                                                        <!-- <div class=""></div> -->
                                                         </p>
                                                     </div>
                                                 </div>
@@ -600,12 +643,17 @@ class HelperlandController
                                                 ?>
                                                 <!-- <div class="status-completed text-center">Completed</div>-->
                                                 </td>
-                                            <td ><button  class="rate-sp" data-bs-toggle="modal" data-bs-target="#ratemodal"  id=" <?php echo $history['ServiceRequestId']; ?> "   style="margin-top:14px;" <?php if($history['Status']==3){ echo "disabled";} ?>>Rate SP</button></td>
+                                            <td ><button  class="rate-sp" data-bs-toggle="modal"  data-bs-target="#ratemodal" id="<?php echo $history['ServiceRequestId']; ?>"   style="margin-top:14px;" <?php if($history['Status']==3){ echo "disabled";} ?>>Rate SP</button></td>
                                         </tr> 
                 
-                <?php
+                    <?php
                 }
-                
+
+                ?>
+                    </tbody>
+                    </table>
+                <?php
+                        
             }
                 else
                 {
@@ -618,7 +666,34 @@ class HelperlandController
 
             public function fill_rating()
             {
+                
               $rate = $this->model->get_ratings_of_sp('rating',$_POST['reqIdforreschedule']);
+              $SP = $this->model->getUserbyId($rate['RatingTo']);
+              $rates = $this->model->getratebyspid($rate['RatingTo']);
+        
+        $j=0;
+        $totalrate=0;
+        if($rates==NULL)
+        {
+            $avrrate=0;
+        }
+        else
+        {
+            foreach($rates as $rate)
+            {
+                $totalrate+=$rate['Ratings'];
+                $j++;
+            }
+            if($j == 0)
+            {
+                $avrrate=$totalrate;
+            }
+            else
+            {
+                $avrrate=$totalrate/$j;
+            }
+        }
+        
                 ?> 
                 
                 <div class="modal-header">
@@ -629,10 +704,10 @@ class HelperlandController
                             <img class="round-border" src="../assets/image/forma-1-copy-19.png" alt="cap">
                             </div>
                             <div class="ps-2">
-                                <p class="sp-details">Lyum Watson</p>
+                                <p class="sp-details"> <?php echo $SP['FirstName']." ".$SP['LastName']; ?></p>
                                 <p class="sp-details">
-                                <div class="rateyo" id= "rating" ></div>
-                                    <span>3.67</span>
+                                <div class="rateyo rateyo1" id= "rating" data-rateyo-rating="<?php  echo $avrrate;?>"></div>
+                                    <span><?php  echo $avrrate;?></span>
                                 </p>
                             </div>
                         </div>
@@ -978,7 +1053,20 @@ class HelperlandController
         if($m<10){$m="0".$m;}
         return $h.":".$m;
       }
-
+        ?>
+                <table  class="newo">
+                                    <thead>
+                                        <tr>
+                                            <th>Service Id </th>
+                                            <th>Service Date </th>
+                                            <th>Customer's Details</th>
+                                            <th>Payment</th>
+                                            <th>Time Conflict</th>
+                                            <th>Action</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody class="">
+        <?php
       foreach($list as $rq)
       {
         $customer= $this->model->getUserbyId($rq['UserId']);
@@ -1009,6 +1097,10 @@ class HelperlandController
             </tr> 
         <?php
       }
+            ?>
+                </tbody>
+                </table>
+            <?php
     }
 
     public function upcoming()
@@ -1028,8 +1120,20 @@ class HelperlandController
         if($m<10){$m="0".$m;}
         return $h.":".$m;
       }
-   
-        //   print_r($list);
+            ?>
+                <table id="upo" class="table">
+                <thead>
+                    <tr>
+                        <th>ServiceId</th>
+                        <th>Service Date </th>
+                        <th id="sd">Customer Details</th>
+                        <th id="cd">Payment</th>
+                        <th >Distance</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody class="">
+            <?php
       foreach($list as $rq)
       {
         $customer= $this->model->getUserbyId($rq['UserId']);
@@ -1072,6 +1176,10 @@ class HelperlandController
             <?php
 
         }
+        ?>
+                </tbody>
+                </table>
+        <?php
         
     }
     public function cancelrequest()
@@ -1125,6 +1233,18 @@ class HelperlandController
                 if($m<10){$m="0".$m;}
                 return $h.":".$m;
             }
+
+                    ?>
+                                <table id="sphisto" class="table">
+                                    <thead>
+                                        <tr>
+                                            <th>Service Id </th>
+                                            <th >Service Date </th>
+                                            <th >Customer Details </th>
+                                        </tr>
+                                    </thead>
+                                <tbody class="">
+                    <?php
             foreach($list as $history)
             {
                 $customer= $this->model->getUserbyId($history['UserId']);
@@ -1151,11 +1271,15 @@ class HelperlandController
                                         </tr>       
                 <?php
             }
+                    ?>
+                              </tbody>
+                                </table>
+                    <?php
         }
         public function acceptrequest()
         {
             $row = $this->model->fill_selected_pending_request($_POST['reqId']);
-    echo "hi";
+    // echo "hi";
             $date = substr($row['ServiceStartDate'],0,10);
             $nextdate = date("Y-m-d H-i-s", strtotime($date . '+1 day'));
     
@@ -1322,7 +1446,900 @@ class HelperlandController
     {
         $this->model->unblockcustomer($_POST['userid'], $_SESSION['UserId']);
     }
-  
+
+    public function spdetails()
+    {
+        $SP = $this->model->getUserbyId($_SESSION['UserId']);
+        $SPAdd=$this->model->UserAddress($_SESSION['UserId']);
+                    ?>
+                                <div class="d-flex align-items-center pb-2">
+                                            <div><b>Account Status:</b></div>
+                                            <div class="ps-2 <?php if($SP['IsActive'] == 1) { echo 'active'; } else { echo ' notactive'; } ?>"><?php if($SP['IsActive'] == 1) { echo 'Active'; } else { echo 'Not Active'; } ?></div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="sp-basic col-md-12">
+                                                <b>Basic details</b>
+                                                <hr class="sp-breakline">
+                                                <div class="sp-avatar"><img src="<?php if($SP['UserProfilePicture'] != null) { echo $SP['UserProfilePicture']; } ?>" alt=""></div>
+                                            </div>
+                                        </div>
+                                        <div class="error-line row">
+                                            <div class="col-md-12"><label class="label text-danger sp-error-message"></label></div>
+                                        </div>
+                                        <div class="row" style="margin-top:50px;">
+                                            <div class="col-md-4">
+                                                <label class="label temp" for="spfname">First name</label><br>
+                                                <input type="text" class="input" name="spfname" placeholder="First name" required value="<?php echo $SP['FirstName'] ;?>">
+                                            </div>
+                                            <div class="col-md-4">
+                                                <label class="label" for="splname">Last name</label><br>
+                                                <input type="text" class="input" name="splname" placeholder="Last name" required value="<?php echo $SP['LastName']; ?>">
+                                            </div>
+                                            <div class="col-md-4">
+                                                <label class="label" for="spemail">E-mail address</label><br>
+                                                <input type="email" class="input" name="spemail" disabled placeholder="E-mail address" required value="<?php echo $SP['Email']; ?>">
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-4">
+                                                <label class="label" for="spmobile">Mobile number</label>
+                                                <div class="input-group">
+                                                    <span class="input-group-text" id="basic-addon1">+49</span>
+                                                    <input type="text" name="spmobile" placeholder="Mobile number" value="<?php echo $SP['Mobile']; ?>" required>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-4">
+                                                <label class="label" for="spdob">Date of Birth</label><br>
+                                                <input type="date" class="input" name="spdob" required value="<?php echo $SP['DateOfBirth']; ?>">
+                                            </div>
+                                            <div class="col-md-4">
+                                                <label class="label" for="spnationality">Nationality</label><br>
+                                                <select name="spnationality" id="spnationality">
+                                                    <option disabled selected value> -- select an option -- </option>
+                                                    <option value="1" <?php echo ($SP['NationalityId']==1)?'selected="selected"':'' ?>>German</option>
+                                                    <option value="2" <?php echo ($SP['NationalityId']==2)?'selected="selected"':'' ?> >Italian</option>
+                                                    <option value="3" <?php echo ($SP['NationalityId']==3)?'selected="selected"':'' ?>>British</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-4">
+                                                <label class="label" for="splanguage">Language</label><br>
+                                                <select name="splanguage" id="splanguage" required>
+                                                    <option disabled selected value> -- select an option -- </option>
+                                                    <option value="1" <?php echo ($SP['LanguageId']==1)?'selected="selected"':'' ?> >German</option>
+                                                    <option value="2" <?php echo ($SP['LanguageId']==2)?'selected="selected"':'' ?> >English</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <label class="label" for="spgender">Gender</label><br>
+                                            <div class="gender col-md-6">
+                                                <div>
+                                                    <input type="radio" id="male" name="spgender" value="1" <?php echo ($SP['Gender']==1)?'checked':'' ?>>
+                                                    <label for="male">Male</label>
+                                                </div>
+                                                <div>
+                                                    <input type="radio" id="female" name="spgender" value="2" <?php echo ($SP['Gender']==2)?'checked':'' ?>>
+                                                    <label for="female">Female</label>
+                                                </div>
+                                                <div>
+                                                    <input type="radio" id="notsay" name="spgender" value="0" <?php echo ($SP['Gender']==null)?'checked':'' ?>>
+                                                    <label for="notsay">Rather not to say</label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <label class="label" for="avatar">Select Avatar</label><br>
+                                                <div class="choose-avatar">
+                                                    <div class="avatar-image"><img id="avatar1" <?php if($SP['UserProfilePicture'] == "../assets/image/avatar-car.png") { echo 'class="active"'; } ?> src="../assets/image/avatar-car.png" alt=""></div>
+                                                    <div class="avatar-image"><img id="avatar2" <?php if($SP['UserProfilePicture'] == "../assets/image/avatar-female.png") { echo 'class="active"'; } ?> src="../assets/image/avatar-female.png" alt=""></div>
+                                                    <div class="avatar-image"><img id="avatar3" <?php if($SP['UserProfilePicture'] == "../assets/image/avatar-hat.png") { echo 'class="active"'; } ?> src="../assets/image/avatar-hat.png" alt=""></div>
+                                                    <div class="avatar-image"><img id="avatar4" <?php if($SP['UserProfilePicture'] == "../assets/image/avatar-iron.png") { echo 'class="active"'; } ?> src="../assets/image/avatar-iron.png" alt=""></div>
+                                                    <div class="avatar-image"><img id="avatar5" <?php if($SP['UserProfilePicture'] == "../assets/image/avatar-male.png") { echo 'class="active"'; } ?> src="../assets/image/avatar-male.png" alt=""></div>
+                                                    <div class="avatar-image"><img id="avatar6" <?php if($SP['UserProfilePicture'] == "../assets/image/avatar-ship.png") { echo 'class="active"'; } ?> src="../assets/image/avatar-ship.png" alt=""></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <b>My address</b>
+                                                <hr class="sp-breakline">
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-4">
+                                                <label class="label" for="spstreetname">Street name</label><br>
+                                                <input type="text" class="input" name="spstreetname" placeholder="street name" required value="<?php echo $SPAdd['AddressLine1']; ?>">
+                                            </div>
+                                            <div class="col-md-4">
+                                                <label class="label" for="sphousenumber">House number</label><br>
+                                                <input type="text" class="input" name="sphousenumber" placeholder="house number" required value="<?php echo $SPAdd['AddressLine2']; ?>">
+                                            </div>
+                                            <div class="col-md-4">
+                                                <label class="label" for="sppostalcode">Postal code</label><br>
+                                                <input type="email" class="input" name="sppostalcode" placeholder="postalcode" required value="<?php echo $SPAdd['PostalCode']; ?>">
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-4">
+                                                <label class="label" for="spcity">City</label><br>
+                                                <input type="text" class="input" name="spcity" placeholder="city" required value="<?php echo $SPAdd['City']; ?>">
+                                            </div>
+                                        </div>
+                                        <div>
+                                            <button type="submit" id="<?php echo $SPAdd['AddressId']; ?>" class="sp-details-save">Save</button>
+                                        </div> 
+                                <?php
+    }
+
+    public function savedetails()
+    {
+        $userid = $_SESSION['UserId'];
+        $spfname = $_POST['spfname'];
+        $splname = $_POST['splname'];
+        $spmobile = $_POST['spmobile'];
+        $spemail = $_POST['spemail'];
+        $spdob = $_POST['spdob'];
+        $spnationality = $_POST['spnationality'];
+        $splanguage = $_POST['splanguage'];
+        $spgender = $_POST['spgender'];
+        $spstreetname = $_POST['spstreetname'];
+        $sphousenumber = $_POST['sphousenumber'];
+        $sppostalcode = $_POST['sppostalcode'];
+        $spcity = $_POST['spcity'];
+
+        if($_POST['selectedavatar'][0] == 1)
+        {
+            $selectedavatar = "../assets/image/avatar-car.png";
+        }
+        else if($_POST['selectedavatar'][0] == 2)
+        {
+            $selectedavatar = "../assets/image/avatar-female.png";
+        }
+        else if($_POST['selectedavatar'][0] == 3)
+        {
+            $selectedavatar = "../assets/image/avatar-hat.png";
+        }
+        else if($_POST['selectedavatar'][0] == 4)
+        {
+            $selectedavatar = "../assets/image/avatar-iron.png";
+        }
+        else if($_POST['selectedavatar'][0] == 5)
+        {
+            $selectedavatar = "../assets/image/avatar-male.png";
+        }
+        else if($_POST['selectedavatar'][0] == 6)
+        {
+            $selectedavatar = "../assets/image/avatar-ship.png";
+        }
+
+        $array = [
+            'spfname' => $spfname,
+            'splname' => $splname,
+            'spmobile' => $spmobile,
+            'spdob' => $spdob,
+            'spnationality' => $spnationality,
+            'splanguage' => $splanguage,
+            'spgender' => $spgender,
+            'selectedavatar' => $selectedavatar,
+        ];
+        $this->model->update_sp_details('user', $userid, $array);
+
+        if(isset($_POST['selectedaddressid']))
+        {
+            $edit = 1;
+            $array2 = [
+                'AddressId' => $_POST['selectedaddressid'],
+                'AddressLine1' => $spstreetname,
+                'AddressLine2' => $sphousenumber,
+                'PostalCode' => $sppostalcode,
+                'City' => $spcity,
+            ];
+        }
+        else
+        {
+            $edit = 0;
+            $array2 = [
+                'UserId' => $userid,
+                'AddressLine1' => $spstreetname,
+                'AddressLine2' => $sphousenumber,
+                'PostalCode' => $sppostalcode,
+                'City' => $spcity,
+                'Mobile' => $spmobile,
+                'Email' => $spemail,
+            ];
+        }
+        $this->model->insert_update_spaddress('useraddress', $array2, $edit);
+    }
+
+    public function adminservicerequest()
+    {
+        $SRs=$this->model->getallservicerequest();
+        function HourMinuteToDecimal($hour_minute) 
+        {
+            $t = explode(':', $hour_minute);
+            return $t[0] * 60 + $t[1];
+        }
+        function DecimalToHoursMins($mins)
+        {
+            $h=(int)($mins/60);
+            $m=round($mins%60);
+            if($h<10){$h="0".$h;}
+            if($m<10){$m="0".$m;}
+            return $h.":".$m;
+        }
+        ?>
+            <table class="table admino" id="tblSRreq">
+                                <thead id="headings">
+                                    <tr class="" >
+                                        <th scope="col">Service Id</th>
+                                        <th scope="col">Service Date</th>
+                                        <th scope="col"> Customer Details</th>
+                                        <th scope="col">Service Provider</th>
+                                        <th scope="col">Net Amount</th>
+                                        <th scope="col">Status</th>
+                                        <th scope="col">Payment Status </th>
+                                        <th scope="col">Actions </th>
+                                        
+                                    </tr>
+                                </thead>
+                                <tbody class=""> 
+        <?php
+        foreach($SRs as $SR)
+        {
+            $dt=substr($SR['ServiceStartDate'],0,10);
+            $tm=substr($SR['ServiceStartDate'],11,5);
+            $totalmins=HourMinuteToDecimal($tm)+ (($SR['ServiceHours']+$SR['ExtraHours'])*60);
+            $totime=DecimalToHoursMins($totalmins);
+            $SRAdd=$this->model->getSRAddbySRId($SR['ServiceRequestId']);
+            $customer=$this->model->getUserbyId($SR['UserId']);
+            $SP=$this->model->getUserbyId($SR['ServiceProviderId']);
+            $customeraddress=$this->model->getUserAddbyAddId($SRAdd['AddressId']);
+        ?>
+                                    <tr>
+                                        <td><?php echo $SR['ServiceRequestId']; ?></td>
+                                        <td>
+                                            <p><img src="../assets/image/calendar2.png"> <?php echo $dt; ?></p>
+                                            <p><img src="../assets/image/layer-14.png"><?php echo $tm."-".$totime; ?></p>
+                                        </td>
+                                        <td>
+                                            <p><?php echo $customer['FirstName']." ".$customer['LastName']; ?></p>
+                                            <p><img src="../assets/image/layer-719.png"> <?php echo $customeraddress['AddressLine1'].",".$customeraddress['AddressLine2'].","; ?></p>
+                                            <p><?php echo $customeraddress['City'].",".$customeraddress['PostalCode']."."; ?></p>
+                                            <!-- <p> Bonn</p> -->
+                                        </td>
+                                        <td><?php if(isset($SR['ServiceProviderId'])){ echo $SP['FirstName']." ".$SP['LastName'];} ?></td>
+                                        <td>&euro;<?php echo $SR['TotalCost']; ?></td>
+                                       
+                                        
+                                        <td class="action">
+
+                                            <?php  
+                                            if($SR['Status']==1)
+                                            {?>
+                                                <button class="btn btn-pending"><b>New</b></button>
+                                            <?php
+                                            }
+                                            elseif($SR['Status']==2)
+                                            {?>
+                                                <button class="btn btn-complete"><b>Completed</b></button>
+                                            <?php
+                                            }
+                                            elseif($SR['Status']==3)
+                                            {?>
+                                                <button class="btn btn-cancel"><b>Cancelled</b></button>
+                                            <?php
+                                            }
+                                            ?>
+
+
+
+
+                                        </td>
+                                        <td class="action"></td>
+                                        <td class="action">
+                                            <div class="dropdown">
+                                                <a class="btn btn-dots" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
+                                                    <i class="fa fa-ellipsis-v"></i>
+                                                </a>
+
+                                                <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                                                 <?php if($SR['Status']==1) {  ?>
+                                                    <li><a class="dropdown-item editreschedule" href="#"  id="<?php echo $SR['ServiceRequestId']; ?>"  data-bs-toggle="modal" data-bs-target="#myModal">Edit & Reschedule</a></li>
+                                                    <li><a class="dropdown-item  cancelreq" href="#"  id="<?php echo $SR['ServiceRequestId']; ?>" >Cancel SR by Cust</a></li>
+                                                 <?php }  ?>
+                                                    <li><a class="dropdown-item" href="#">Inquiry</a></li>
+                                                    <li><a class="dropdown-item" href="#">History Log</a></li>
+                                                    <li><a class="dropdown-item" href="#">Download Invoice</a></li>
+                                                    <li><a class="dropdown-item" href="#">Other Transaction</a></li>
+                                                </ul>
+                                            </div>
+                                        </td>          
+                                    </tr>
+        <?php
+        }
+        ?>
+                 </tbody>
+                            </table>
+        <?php
+    }
+
+    public function usermanagement()
+    {
+        $users=$this->model->usermanagement();
+        function HourMinuteToDecimal($hour_minute) 
+        {
+            $t = explode(':', $hour_minute);
+            return $t[0] * 60 + $t[1];
+        }
+        function DecimalToHoursMins($mins)
+        {
+            $h=(int)($mins/60);
+            $m=round($mins%60);
+            if($h<10){$h="0".$h;}
+            if($m<10){$m="0".$m;}
+            return $h.":".$m;
+        }
+                ?>
+                        <table class="table userdata usero" id="usero">
+                                <thead id="headings">
+                                    <tr class="" >
+                                        <th scope="col">User Name</th>
+                                        <th scope="col">Role</th>
+                                        <th scope="col"> Date of Registration</th>
+                                        <th scope="col">User Type</th>
+                                        <th scope="col">Phone</th>
+                                        <th scope="col">Postal code</th>
+                                        <th scope="col">Status </th>
+                                        <th scope="col">Actions </th>
+                                        
+                                    </tr>
+                                </thead>
+                                <tbody class="">
+                <?php
+        foreach($users as $user)
+        {
+                            ?>
+                                    <tr>
+                                        <td><?php echo $user['FirstName']." ". $user['LastName'];?></td>
+                                        <td>
+                                           
+                                        </td>
+                                        <td>
+                                            <p><img src="../assets/image/calendar2.png"> <?php echo  substr($user['CreatedDate'],0,10) ?></p>
+                                        </td>
+                                        <td><?php if($user['UserTypeId']==1) {echo "service provider";} elseif($user['UserTypeId']==2){ echo "Customer"; }?></td>
+                                        <td><?php echo $user['Mobile']; ?></td>
+                                        <td> <?php echo $user['ZipCode']; ?> </td>
+                                        
+                                        <td class="status">
+                                            <?php 
+                                            if($user['IsActive']==0 && $user['IsApproved']==1)
+                                            {?>
+                                                <button class="btn btn-inactive">Inactive</button>
+                                            <?php
+                                            }
+                                            elseif($user['IsActive']==1 && $user['IsApproved']==1)
+                                            {?>
+                                                <button class="btn btn-active1">Active</button>
+                                            <?php
+                                            }
+                                            elseif($user['IsApproved']==0){
+                                            ?>
+                                            <button class="btn btn-approve">Not Approved</button>
+                                            <?php
+                                            }?>
+                                        </td>
+
+                                        <td class="action">
+                                           <div class="dropdown">
+                                                <a class="btn btn-dots" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
+                                                    <i class="fa fa-ellipsis-v"></i>
+                                                </a>
+
+                                                <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                                                    <!-- <li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#myModal">Edit & Reschedule</a></li>
+                                                    <li><a class="dropdown-item" href="#">Cancel SR by Cust</a></li>
+                                                    <li><a class="dropdown-item" href="#">Inquiry</a></li>
+                                                    <li><a class="dropdown-item" href="#">History Log</a></li>
+                                                    <li><a class="dropdown-item" href="#">Download Invoice</a></li>
+                                                    <li><a class="dropdown-item" href="#">Other Transaction</a></li> -->
+                                                    <?php 
+                                                        if($user['IsActive']==0 && $user['IsApproved']==1)
+                                                        {?>
+                                                            <a class="dropdown-item letactive" id="<?php echo $user['UserId']; ?>" href="#">Activate</a>
+                                                        <?php
+                                                        }
+                                                        elseif($user['IsActive']==1 && $user['IsApproved']==1)
+                                                        {?>
+                                                            <a class="dropdown-item letdeactive" id="<?php echo $user['UserId']; ?>" href="#">Deactivate</a>
+                                                        <?php
+                                                        }
+                                                    ?>
+                                                    <?php 
+                                                        if($user['UserTypeId']==1 && $user['IsApproved']==0)
+                                                        {?>
+                                                        <a class="dropdown-item letapprove" id="<?php echo $user['UserId']; ?>" href="#">Approve</a>
+                                                        <?php
+                                                        }
+                                                    ?>
+                                                </ul>
+                                            </div>
+                                        </td>          
+                                    </tr>
+
+                            <?php
+        }
+        ?>
+                 
+                 </tbody>
+                            </table>
+        <?php
+    }
+
+    public function activeuser()
+    {
+        $this->model->activeuser($_POST['userid']);
+        $user=$this->model->getUserbyId($_POST['userid']);
+
+        $to_email = $user['Email'];
+        $subject = "Account activated successfully";
+        $body = "Your Account with UserId:".$user['UserId']." is Activated by Admin";
+        $headers = "From: nishanavalkha2251@gmail.com";
+        mail($to_email, $subject, $body, $headers);
+        
+    }
+    public function deactiveuser()
+    {
+        $this->model->deactiveuser($_POST['userid']);
+        $user=$this->model->getUserbyId($_POST['userid']);
+
+        $to_email = $user['Email'];
+        $subject = "Account Deactivated successfully";
+        $body = "Your Account with UserId:".$user['UserId']." is DeActivated by Admin";
+        $headers = "From: nishanavalkha2251@gmail.com";
+        mail($to_email, $subject, $body, $headers);
+    }
+
+    public function approveuser()
+    {
+        $this->model->approveuser($_POST['userid']);
+        $user=$this->model->getUserbyId($_POST['userid']);
+
+        $to_email = $user['Email'];
+        $subject = "Account Approved successfully";
+        $body = "Your Account with UserId:".$user['UserId']." is Approved by Admin";
+        $headers = "From: nishanavalkha2251@gmail.com";
+        mail($to_email, $subject, $body, $headers);
+    }
+    public function cancelfromadmin()
+    {
+        $this->model->cancelfromadmin($_POST['reqid']);
+        $SR=$this->model->SRByreqId($_POST['reqid']);
+
+        if(isset($SR['ServiceProviderId']))
+        {
+            $user=$this->model->getUserbyId($SR['ServiceProviderId']);
+
+            $to_email = $user['Email'];
+            $subject = "Service Cancelled";
+            $body = "The Service (Service RequestId =".$_POST['reqid']." DateTime: ".$SR['ServiceStartDate'].")  Assigned to you is cancelled by Customer";
+            $headers = "From: nishanavalkha2251@gmail.com";
+            mail($to_email, $subject, $body, $headers);
+        }
+    }
+
+    public function fill_reschedule_servicerequest_detail()
+    {
+    ?>
+      <div class="modal-header">
+        <h4 class="modal-title">Edit Service Request</h4>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+
+      <!-- Modal body -->
+        <div class="modal-body">
+        
+            <form action="form-group">
+                <div class="row">
+                    <div class="col-lg-6">
+                        <label>Date</label>
+                        <input type="date" name="date" class="form-control">
+                    </div>
+
+                     <div class="col-lg-6">
+                        <label>Time</label>
+                        <input type="Time" name="time" class="form-control">
+                    </div>
+                </div>
+            <h4>Service Address</h4>
+                <div class="row">
+                     <div class="col-lg-6">
+                        <label>Street name</label>
+                        <input type="text" name="streetname" class="form-control">
+                    </div>
+                    <div class="col-lg-6">
+                        <label>House number</label>
+                        <input type="text" name="housenumber" class="form-control">
+                    </div>
+                </div>
+             
+                 <div class="row">
+                     <div class="col-lg-6">
+                        <label>Postal code</label>
+                        <input type="text" name="postalcode" class="form-control">
+                    </div>
+                    <div class="col-lg-6">
+                        <label for="ap">City</label>
+                                 
+                                 <select class="option">
+                                                <option selected>Select Customer</option>
+                                                <option value="1">Type1</option>
+                                                <option value="2">Type2</option>
+                                                <option value="3">Type3</option>
+                                 </select>
+                    </div>
+                </div>
+            <h4>Invoice Address</h4>
+                <div class="row">
+                     <div class="col-lg-6">
+                        <label>Street name</label>
+                        <input type="text" name="streetname" class="form-control">
+                    </div>
+                    <div class="col-lg-6">
+                        <label>House number</label>
+                        <input type="text" name="housenumber" class="form-control">
+                    </div>
+                </div>
+
+                <div class="row">
+                     <div class="col-lg-6">
+                        <label>Postal code</label>
+                        <input type="text" name="postalcode" class="form-control">
+                    </div>
+                    <div class="col-lg-6">
+                        <label for="ap">City</label>
+                                 
+                                 <select class="option">
+                                                <option selected>Select Customer</option>
+                                                <option value="1">Type1</option>
+                                                <option value="2">Type2</option>
+                                                <option value="3">Type3</option>
+                                 </select>
+                    </div>
+                </div>
+                    <label style="font-size: 14px;">Why do you want to reschedule service request?</label>
+                        <input type="text" name="" style ="height: 60px;width: 100%;" class="form-control" 
+                                placeholder="Why do you want to reschedule service request?">
+
+                    <label style="font-size: 14px;">Call Center EMP Notes</label>
+                        <input type="text" name="" style ="height: 60px;width: 100%;" class="form-control" placeholder="Enter Notes">
+            </form>
+       
+        </div>
+
+      <!-- Modal footer -->
+      <div class="modal-footer">
+        <button type="button" name="Update" style="width: 100%;height: 30px;" class="btn btn-primary" data-bs-dismiss="modal">Update</button>
+      </div>
+<?php
+    }
+
+    public function fill_option()
+    {
+        $typeid1 = $_POST['typeid1'];
+        $typeid2 = $_POST['typeid2'];
+        $ans = $this->model->get_filter_option($typeid1, $typeid2);
+        foreach ($ans as $row) {
+        ?>
+            <option value="<?php echo $row['FirstName'] . ' ' . $row['LastName'] ?>"><?php echo $row['FirstName'] . ' ' . $row['LastName'] ?></option>
+        <?php
+        }
+
+    }
+    public function userfilter()
+    {
+        if($_POST['username']!='')
+        {
+            $username=explode(' ',$_POST['username']);
+            $FirstName=$username[0];
+            $LastName=$username[1];
+        }
+        else
+        {
+            $FirstName="";
+            $LastName="";
+        }
+        $fromdate=$_POST['fromdate'];
+        $todate=$_POST['todate'];
+        $array=[
+            "FirstName" => $FirstName,
+            "LastName" => $LastName,
+            "UserTypeId" => $_POST['usertype'],
+            // "Mobile" => $_POST['mobile'],
+            "ZipCode" => $_POST['postalcode'],
+            "fromdate" => $fromdate,
+            "todate" => $todate
+        ];
+        $rows=$this->model->userfilter($array);
+        function HourMinuteToDecimal($hour_minute) 
+        {
+            $t = explode(':', $hour_minute);
+            return $t[0] * 60 + $t[1];
+        }
+        function DecimalToHoursMins($mins)
+        {
+            $h=(int)($mins/60);
+            $m=round($mins%60);
+            if($h<10){$h="0".$h;}
+            if($m<10){$m="0".$m;}
+            return $h.":".$m;
+        }
+                ?>
+                        <table class="table userdata isro" id="SRreq">
+                                <thead id="headings">
+                                    <tr class="" >
+                                        <th scope="col">User Name</th>
+                                        <th scope="col">Role</th>
+                                        <th scope="col"> Date of Registration</th>
+                                        <th scope="col">User Type</th>
+                                        <th scope="col">Phone</th>
+                                        <th scope="col">Postal code</th>
+                                        <th scope="col">Status </th>
+                                        <th scope="col">Actions </th>
+                                        
+                                    </tr>
+                                </thead>
+                                <tbody class="">
+                <?php
+        foreach($rows as $user)
+        {
+                            ?>
+                                    <tr>
+                                        <td><?php echo $user['FirstName']." ". $user['LastName'];?></td>
+                                        <td>
+                                           
+                                        </td>
+                                        <td>
+                                            <p><img src="../assets/image/calendar2.png"> <?php echo  substr($user['CreatedDate'],0,10) ?></p>
+                                        </td>
+                                        <td><?php if($user['UserTypeId']==1) {echo "service provider";} elseif($user['UserTypeId']==2){ echo "Customer"; }?></td>
+                                        <td><?php echo $user['Mobile']; ?></td>
+                                        <td> <?php echo $user['ZipCode']; ?> </td>
+                                        
+                                        <td class="status">
+                                            <?php 
+                                            if($user['IsActive']==0 && $user['IsApproved']==1)
+                                            {?>
+                                                <button class="btn btn-inactive">Inactive</button>
+                                            <?php
+                                            }
+                                            elseif($user['IsActive']==1 && $user['IsApproved']==1)
+                                            {?>
+                                                <button class="btn btn-active1">Active</button>
+                                            <?php
+                                            }
+                                            elseif($user['IsApproved']==0){
+                                            ?>
+                                            <button class="btn btn-approve">Not Approved</button>
+                                            <?php
+                                            }?>
+                                        </td>
+
+                                        <td class="action">
+                                           <div class="dropdown">
+                                                <a class="btn btn-dots" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
+                                                    <i class="fa fa-ellipsis-v"></i>
+                                                </a>
+
+                                                <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                                                    <!-- <li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#myModal">Edit & Reschedule</a></li>
+                                                    <li><a class="dropdown-item" href="#">Cancel SR by Cust</a></li>
+                                                    <li><a class="dropdown-item" href="#">Inquiry</a></li>
+                                                    <li><a class="dropdown-item" href="#">History Log</a></li>
+                                                    <li><a class="dropdown-item" href="#">Download Invoice</a></li>
+                                                    <li><a class="dropdown-item" href="#">Other Transaction</a></li> -->
+                                                    <?php 
+                                                        if($user['IsActive']==0 && $user['IsApproved']==1)
+                                                        {?>
+                                                            <a class="dropdown-item letactive" id="<?php echo $user['UserId']; ?>" href="#">Activate</a>
+                                                        <?php
+                                                        }
+                                                        elseif($user['IsActive']==1 && $user['IsApproved']==1)
+                                                        {?>
+                                                            <a class="dropdown-item letdeactive" id="<?php echo $user['UserId']; ?>" href="#">Deactivate</a>
+                                                        <?php
+                                                        }
+                                                    ?>
+                                                    <?php 
+                                                        if($user['UserTypeId']==1 && $user['IsApproved']==0)
+                                                        {?>
+                                                        <a class="dropdown-item letapprove" id="<?php echo $user['UserId']; ?>" href="#">Approve</a>
+                                                        <?php
+                                                        }
+                                                    ?>
+                                                </ul>
+                                            </div>
+                                        </td>          
+                                    </tr>
+
+                            <?php
+        }
+        ?>
+                 
+                 </tbody>
+                            </table>
+        <?php
+        
+
+    }
+    public function requestfilter()
+    {
+        $customer=$_POST['customer'];
+        $sp=$_POST['sp'];
+        $fromdate=$_POST['fromdate'];
+        $todate=$_POST['todate'];
+        $array=[
+            "ServiceRequestId" => $_POST['serviceid'],
+            "ZipCode" => $_POST['postalcode'],
+            "Customer" => $customer,
+            "SP" => $sp,
+            "Status" => $_POST['status'],
+            "fromdate" => $fromdate,
+            "todate" => $todate
+        ];
+        $rows=$this->model->requestfilter($array);
+        function HourMinuteToDecimal($hour_minute) 
+        {
+            $t = explode(':', $hour_minute);
+            return $t[0] * 60 + $t[1];
+        }
+        function DecimalToHoursMins($mins)
+        {
+            $h=(int)($mins/60);
+            $m=round($mins%60);
+            if($h<10){$h="0".$h;}
+            if($m<10){$m="0".$m;}
+            return $h.":".$m;
+        }
+        ?>
+            <table class="table admino" id="tblSRreq">
+                                <thead id="headings">
+                                    <tr class="" >
+                                        <th scope="col">Service Id</th>
+                                        <th scope="col">Service Date</th>
+                                        <th scope="col"> Customer Details</th>
+                                        <th scope="col">Service Provider</th>
+                                        <th scope="col">Net Amount</th>
+                                        <th scope="col">Status</th>
+                                        <th scope="col">Payment Status </th>
+                                        <th scope="col">Actions </th>
+                                        
+                                    </tr>
+                                </thead>
+                                <tbody class=""> 
+        <?php
+        foreach($rows as $SR)
+        {
+            $dt=substr($SR['ServiceStartDate'],0,10);
+            $tm=substr($SR['ServiceStartDate'],11,5);
+            $totalmins=HourMinuteToDecimal($tm)+ (($SR['ServiceHours']+$SR['ExtraHours'])*60);
+            $totime=DecimalToHoursMins($totalmins);
+            $SRAdd=$this->model->getSRAddbySRId($SR['ServiceRequestId']);
+            $customer=$this->model->getUserbyId($SR['UserId']);
+            $SP=$this->model->getUserbyId($SR['ServiceProviderId']);
+            $customeraddress=$this->model->getUserAddbyAddId($SRAdd['AddressId']);
+        ?>
+                                    <tr>
+                                        <td><?php echo $SR['ServiceRequestId']; ?></td>
+                                        <td>
+                                            <p><img src="../assets/image/calendar2.png"> <?php echo $dt; ?></p>
+                                            <p><img src="../assets/image/layer-14.png"><?php echo $tm."-".$totime; ?></p>
+                                        </td>
+                                        <td>
+                                            <p><?php echo $customer['FirstName']." ".$customer['LastName']; ?></p>
+                                            <p><img src="../assets/image/layer-719.png"> <?php echo $customeraddress['AddressLine1'].",".$customeraddress['AddressLine2'].","; ?></p>
+                                            <p><?php echo $customeraddress['City'].",".$customeraddress['PostalCode']."."; ?></p>
+                                            <!-- <p> Bonn</p> -->
+                                        </td>
+                                        <td><?php if(isset($SR['ServiceProviderId'])){ echo $SP['FirstName']." ".$SP['LastName'];} ?></td>
+                                        <td>&euro;<?php echo $SR['TotalCost']; ?></td>
+                                       
+                                        
+                                        <td class="action">
+
+                                            <?php  
+                                            if($SR['Status']==1)
+                                            {?>
+                                                <button class="btn btn-pending"><b>New</b></button>
+                                            <?php
+                                            }
+                                            elseif($SR['Status']==2)
+                                            {?>
+                                                <button class="btn btn-complete"><b>Completed</b></button>
+                                            <?php
+                                            }
+                                            elseif($SR['Status']==3)
+                                            {?>
+                                                <button class="btn btn-cancel"><b>Cancelled</b></button>
+                                            <?php
+                                            }
+                                            ?>
+
+
+
+
+                                        </td>
+                                        <td class="action"></td>
+                                        <td class="action">
+                                            <div class="dropdown">
+                                                <a class="btn btn-dots" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
+                                                    <i class="fa fa-ellipsis-v"></i>
+                                                </a>
+
+                                                <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                                                 <?php if($SR['Status']==1) {  ?>
+                                                    <li><a class="dropdown-item editreschedule" href="#"  id="<?php echo $SR['ServiceRequestId']; ?>"  data-bs-toggle="modal" data-bs-target="#myModal">Edit & Reschedule</a></li>
+                                                    <li><a class="dropdown-item  cancelreq" href="#"  id="<?php echo $SR['ServiceRequestId']; ?>" >Cancel SR by Cust</a></li>
+                                                 <?php }  ?>
+                                                    <li><a class="dropdown-item" href="#">Inquiry</a></li>
+                                                    <li><a class="dropdown-item" href="#">History Log</a></li>
+                                                    <li><a class="dropdown-item" href="#">Download Invoice</a></li>
+                                                    <li><a class="dropdown-item" href="#">Other Transaction</a></li>
+                                                </ul>
+                                            </div>
+                                        </td>          
+                                    </tr>
+        <?php
+        }
+        ?>
+                 </tbody>
+                            </table>
+        <?php
+    } 
+    
+    public function exportuserlist()
+    {
+        $list = $this->model->users();
+        $usertype = [2 => 'Customer', 1 => 'ServiceProvider'];
+        $approve = [0 => 'Approved', 1 => 'Not Approved'];
+        $active = [0 => 'Active', 1 => 'InActive'];
+        $delete = [0 => '-', 1 => 'Deleted'];
+        $gender = [1 => 'Male', 2 => 'Female', 3 => 'Rather Not to Say'];
+
+        $filename = 'Users.csv';
+        $file = fopen($filename,"w");
+
+        $fields = array('User Id', 'User Name', 'Email', 'Mobile', 'UserType', 'Gender', 'DOB', 'ZipCode', 'CreateDate', 'IsApprove', 'IsActive','IsDelete');
+        fputcsv($file, $fields);
+
+        foreach ($list as $line)
+        {
+            $line['UserTypeId'] = $usertype[$line['UserTypeId']];
+            if(isset($line['Gender']))
+            {
+                $line['Gender'] = $gender[$line['Gender']];
+            }
+            $line['IsApproved'] = $approve[$line['IsApproved']];
+            $line['IsActive'] = $active[$line['IsActive']];
+            $line['IsDeleted'] = $delete[$line['IsDeleted']];
+            fputcsv($file, $line);
+        }
+        fclose($file);
+
+        header("Content-Description: File Transfer");
+        header("Content-Disposition: attachment; filename=".$filename);
+        header("Content-Type: application/csv; "); 
+
+        readfile($filename);
+
+       // deleting file
+       unlink($filename);
+       exit();   
+    }
+        
 }
 
 ?>
